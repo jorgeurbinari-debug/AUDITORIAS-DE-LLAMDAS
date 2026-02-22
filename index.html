@@ -249,10 +249,9 @@ button:hover{ background:#0056b3; }
 <label>Tipo de Muestra</label>
 <select id="Tipodemuestra" name="entry.1613585774" required>
 <option value="">Selecciona</option>
-<option value="CONTENIDO">CONTENIDO</option>
-<option value="NO CONTENIDO">NO CONTENIDO</option>
-<option value="NO APLICA">NO APLICA</option>
-
+<option value="EPA">EPA</option>
+<option value="EFECTIVIDAD">EFECTIVIDAD</option>
+<option value="CROSS">CROSS</option>
 </select>
 </div>
 
@@ -274,6 +273,17 @@ button:hover{ background:#0056b3; }
 </select>
 </div>
 
+<div class="campo">
+<label>Aplica Speech EPA</label>
+<select id="SpeechEpa" name="entry.801462156" required>
+<option value="">Selecciona</option>
+<option value="BRINDA CORRECTAMENTE">BRINDA CORRECTAMENTE</option>
+<option value="NO BRINDA SPEECH">NO BRINDA SPEECH</option>
+<option value="BRINDA DE MANERA INCORRECTA/INCOMPLETA">BRINDA DE MANERA INCORRECTA/INCOMPLETA</option>
+<option value="NO APLICA">NO APLICA</option>
+</select>
+</div>
+  
   
 ///========= CONDICION DE CAMPO MOTIVO DE BAJA ======
 <script>
@@ -349,11 +359,12 @@ servicioSelect.addEventListener("change", function() {
 
   
 ///=====MOTIVIOS EPA SEGUN SELECCION=====
-  <script>
+<script>
 document.addEventListener("DOMContentLoaded", function () {
 
-const servicioSelect = document.getElementById("Cauzaraiz");
-const Motivocausaraiz = document.getElementById("Motivocausaraiz");
+const tipoMuestra = document.getElementById("Tipodemuestra");
+const causaRaiz = document.getElementById("Cauzaraiz");
+const motivoCausaRaiz = document.getElementById("Motivocausaraiz");
 
 const motivosAsesor = [
 "CLIENTE CUELGA SIN FINALIZAR PROCESO",
@@ -401,15 +412,18 @@ const motivosExperiencia = [
 ];
 
 function cargarMotivos(lista) {
-    Motivocausaraiz.innerHTML = '<option value="">Selecciona</option>';
-
+    motivoCausaRaiz.innerHTML = '<option value="">Selecciona</option>';
     lista.forEach(motivo => {
-        let option = new Option(motivo, motivo);
-        Motivocausaraiz.add(option);
+        motivoCausaRaiz.add(new Option(motivo, motivo));
     });
 }
 
-servicioSelect.addEventListener("change", function() {
+causaRaiz.addEventListener("change", function() {
+
+    // 🔴 CONDICIÓN PRINCIPAL
+    if (tipoMuestra.value !== "EPA") {
+        return; // si no es EPA no hace nada
+    }
 
     switch (this.value) {
         case "ASESOR":
@@ -429,9 +443,16 @@ servicioSelect.addEventListener("change", function() {
             break;
 
         default:
-            Motivocausaraiz.innerHTML = '<option value="">Selecciona</option>';
+            motivoCausaRaiz.innerHTML = '<option value="">Selecciona</option>';
     }
 
+});
+
+// Limpia si cambian Tipo de Muestra
+tipoMuestra.addEventListener("change", function(){
+    if (this.value !== "EPA") {
+        motivoCausaRaiz.innerHTML = '<option value="">Selecciona</option>';
+    }
 });
 
 });
@@ -439,6 +460,7 @@ servicioSelect.addEventListener("change", function() {
   
 </body>
 </html>
+
 
 
 
