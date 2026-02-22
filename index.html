@@ -94,8 +94,31 @@ button:hover{ background:#0056b3; }
 
 .error{ border:2px solid red !important; }
 .full{ grid-column: span 3; }
+
+textarea {
+  padding:10px;
+  border-radius:6px;
+  border:1px solid #ccc;
+  font-size:14px;
+  font-family: Arial, Helvetica, sans-serif;
+  min-height:40px;
+}
+  
 </style>
 </head>
+
+ <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+const textarea = document.getElementById("descripcionNoContencion");
+
+textarea.addEventListener("input", function () {
+    this.style.height = "auto";
+    this.style.height = this.scrollHeight + "px";
+});
+
+});
+</script> 
 
 <body>
 
@@ -275,7 +298,7 @@ button:hover{ background:#0056b3; }
 
 <div class="campo">
 <label>Aplica Speech EPA</label>
-<select id="SpeechEpa" name="entry.801462156" required>
+<select id="SpeechEpa" name="entry.1707404081" required>
 <option value="">Selecciona</option>
 <option value="BRINDA CORRECTAMENTE">BRINDA CORRECTAMENTE</option>
 <option value="NO BRINDA SPEECH">NO BRINDA SPEECH</option>
@@ -283,6 +306,99 @@ button:hover{ background:#0056b3; }
 <option value="NO APLICA">NO APLICA</option>
 </select>
 </div>
+  
+<div class="campo">
+<label>Ofrece Escalonado</label>
+<select id="Escalonado" name="entry.1723677195" required>
+<option value="">Selecciona</option>
+<option value="SI">SI</option>
+<option value="NO">NO</option>
+<option value="NO APLICA">NO APLICA</option>
+</select>
+</div>
+
+<div class="campo">
+<label>Motivo de No Contencion</label>
+<select id="Nocontencion" name="entry.229089857" required>
+<option value="">Selecciona</option>
+<option value="BAJA POR ALTA">BAJA POR ALTA</option>
+<option value="SIN FACTIBILIDAD">SIN FACTIBILIDAD</option>
+<option value="CLIENTE YA TIENE OTRAS LINEAS CON MOVISTAR">CLIENTE YA TIENE OTRAS LINEAS CON MOVISTAR</option>
+<option value="CLIENTE TIENE LINEA CON OTRO OPERADOR">CLIENTE TIENE LINEA CON OTRO OPERADOR</option>
+<option value="CLIENTE CESADO(RETIRADO)">CLIENTE CESADO(RETIRADO)</option>
+<option value="VIAJE AL EXTRANJERO SIN RETORNO">VIAJE AL EXTRANJERO SIN RETORNO</option>
+  <option value="FALLAS TECNICAS">FALLAS TECNICAS</option>
+<option value="RESPONSABILIDAD ASESOR">RESPONSABILIDAD ASESOR</option>
+</select>
+</div>
+
+<div class="campo">
+<label>Oportunidad de Mejora</label>
+<select id="Mejora1" name="entry.1986049857" required>
+<option value="">Selecciona</option>
+<option value="TIEMPOS EN ESPERA">TIEMPOS EN ESPERA</option>
+<option value="HABILIDAD BLANDA">HABILIDAD BLANDA</option>
+<option value="RELLAMADO">RELLAMADO</option>
+<option value="EMPATÍA">EMPATÍA</option>
+<option value="INTENCIÓN DE CONTENCIÓN">INTENCIÓN DE CONTENCIÓN</option>
+<option value="CORTE RAC">CORTE RAC</option>
+<option value="REBATIMIENTO DE OBJECIONES">REBATIMIENTO DE OBJECIONES</option>
+<option value="NEGOCIACIÓN">NEGOCIACIÓN</option>
+<option value="HABILIDAD CON LOS APLICATIVOS (DEMORA EN IMPACTO)">HABILIDAD CON LOS APLICATIVOS (DEMORA EN IMPACTO)</option>
+<option value="CUMPLIMIENTO DE PROCESO">CUMPLIMIENTO DE PROCESO</option
+</select>
+</div>
+
+<div class="campo">
+<label>Oportunidad de Mejora 2</label>
+<select id="Mejora2" name="entry.435072420" required>
+<option value="">Selecciona</option>
+<option value="TIEMPOS EN ESPERA">TIEMPOS EN ESPERA</option>
+<option value="HABILIDAD BLANDA">HABILIDAD BLANDA</option>
+<option value="RELLAMADO">RELLAMADO</option>
+<option value="EMPATÍA">EMPATÍA</option>
+<option value="INTENCIÓN DE CONTENCIÓN">INTENCIÓN DE CONTENCIÓN</option>
+<option value="CORTE RAC">CORTE RAC</option>
+<option value="REBATIMIENTO DE OBJECIONES">REBATIMIENTO DE OBJECIONES</option>
+<option value="NEGOCIACIÓN">NEGOCIACIÓN</option>
+<option value="HABILIDAD CON LOS APLICATIVOS (DEMORA EN IMPACTO)">HABILIDAD CON LOS APLICATIVOS (DEMORA EN IMPACTO)</option>
+<option value="CUMPLIMIENTO DE PROCESO">CUMPLIMIENTO DE PROCESO</option
+</select>
+</div>
+
+
+<div class="campo">
+<label>Oportunidad de Mejora 3</label>
+<select id="Mejora3" name="entry.1335755996" required>
+<option value="">Selecciona</option>
+<option value="TIEMPOS EN ESPERA">TIEMPOS EN ESPERA</option>
+<option value="HABILIDAD BLANDA">HABILIDAD BLANDA</option>
+<option value="RELLAMADO">RELLAMADO</option>
+<option value="EMPATÍA">EMPATÍA</option>
+<option value="INTENCIÓN DE CONTENCIÓN">INTENCIÓN DE CONTENCIÓN</option>
+<option value="CORTE RAC">CORTE RAC</option>
+<option value="REBATIMIENTO DE OBJECIONES">REBATIMIENTO DE OBJECIONES</option>
+<option value="NEGOCIACIÓN">NEGOCIACIÓN</option>
+<option value="HABILIDAD CON LOS APLICATIVOS (DEMORA EN IMPACTO)">HABILIDAD CON LOS APLICATIVOS (DEMORA EN IMPACTO)</option>
+<option value="CUMPLIMIENTO DE PROCESO">CUMPLIMIENTO DE PROCESO</option
+</select>
+</div>
+  
+<div class="campo">
+<label>Descripción de No Contención</label>
+<textarea id="descripcionNoContencion"
+          name="entry.1131024963"
+          rows="2"
+          required
+          style="resize:none; overflow:hidden;"></textarea>
+</div>
+
+
+
+
+
+  
+
   
   
 ///========= CONDICION DE CAMPO MOTIVO DE BAJA ======
@@ -357,6 +473,7 @@ servicioSelect.addEventListener("change", function() {
 });
 </script>
 
+  
   
 ///=====MOTIVIOS EPA SEGUN SELECCION=====
 <script>
@@ -449,6 +566,7 @@ servicioSelect.addEventListener("change", function() {
   
 </body>
 </html>
+
 
 
 
