@@ -213,7 +213,9 @@ textarea.addEventListener("input", function () {
 
 <div class="campo">
 <label>Fecha</label>
-<input name="entry.568992954" required>
+<input type="date" 
+       name="entry.568992954" 
+       required>
 </div>
 
 <div class="campo">
@@ -430,7 +432,81 @@ textarea.addEventListener("input", function () {
 </select>
 </div>
   
+<div class="campo">
+<label>Producto Ofrecido</label>
+<select id="Productoofrecido" name="entry.698375446" required>
+<option value="">Selecciona</option>
+<option value="BAF">BAF</option>
+<option value="VOZ">VOZ</option>
+<option value="RECAMBIO">RECAMBIO</option>
+</select>
+</div>  
+
+ <div class="campo">
+<label>Se Concreta la Venta</label>
+<select id="Concretaventa" name="entry.1271045405" required>
+<option value="">Selecciona</option>
+<option value="SI">SI</option>
+<option value="NO">NO</option>
+</select>
+</div>  
+
+<div class="campo">
+<label>Que Producto se Vendio</label>
+<select id="Productovendido" name="entry.1766526396" required>
+<option value="">Selecciona</option>
+<option value="BAF">BAF</option>
+<option value="VOZ">VOZ</option>
+<option value="RECAMBIO">RECAMBIO</option>
+<option value="NO APLICA">NO APLICA</option>
+</select>
+</div>  
   
+<label>Detalle de la causa del Desvio</label>
+<textarea id="Causadesvio"
+          name="entry.249344188"
+          rows="2"
+          required
+          style="resize:none; overflow:hidden;"></textarea>
+</div>
+
+<label>Resumen de la Llamada</label>
+<textarea id="Resumenllamada"
+          name="entry.1970751650"
+          rows="2"
+          required
+          style="resize:none; overflow:hidden;"></textarea>
+</div>
+
+<div class="campo">
+<label>Accion de Seguimiento</label>
+<select id="Seguimiento" name="entry.1722660845" required>
+<option value="">Selecciona</option>
+<option value="FEEDBACK DE MEJORA">FEEDBACK DE MEJORA</option>
+<option value="AMONESTACIÓN VERBAL">AMONESTACIÓN VERBAL</option>
+<option value="CARTA DE COMPROMISO">CARTA DE COMPROMISO</option>
+<option value="APLAZAMIENTO">APLAZAMIENTO</option>
+<option value="AMONESTACIÓN ESCRITA">AMONESTACIÓN ESCRITA</option>
+<option value="SUSPENSIÓN 1 DÍA">SUSPENSIÓN 1 DÍA</option>
+<option value="SUSPENSIÓN 3 DÍAS">SUSPENSIÓN 3 DÍAS</option>
+<option value="SUSPENSIÓN 8 DÍAS">SUSPENSIÓN 5 DÍAS</option>
+<option value="SUSPENSIÓN 8 DÍAS">SUSPENSIÓN 8 DÍAS</option>  
+</select>
+</div>  
+
+<div class="campo">
+<label>Inicio de Aplazamiento</label>
+<input type="date" 
+       name="entry.540982508" 
+       required>
+</div>
+
+<div class="campo">
+<label>Fin de Aplazamiento</label>
+<input type="date" 
+       name="entry.1574773486" 
+       required>
+</div>
 
   
   
@@ -688,6 +764,7 @@ causaRaiz.addEventListener("change", validarCondiciones);
   
 </body>
 </html>
+
 
 
 
