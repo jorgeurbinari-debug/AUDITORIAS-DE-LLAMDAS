@@ -350,6 +350,8 @@ servicioSelect.addEventListener("change", function() {
   
 ///=====MOTIVIOS EPA SEGUN SELECCION=====
   <script>
+document.addEventListener("DOMContentLoaded", function () {
+
 const servicioSelect = document.getElementById("Cauzaraiz");
 const Motivocausaraiz = document.getElementById("Motivocausaraiz");
 
@@ -357,7 +359,7 @@ const motivosAsesor = [
 "CLIENTE CUELGA SIN FINALIZAR PROCESO",
 "NO HAY MOTIVO DE MALA CALIFICACION",
 "NO GESTIONABLE (TERCERO)",
-"NO GESTIONALE (NO BRINDA DATOS)",
+"NO GESTIONABLE (NO BRINDA DATOS)",
 "CLIENTE SOLICITA AJUSTE QUE NO APLICA",
 "NO CONFORME POR COBROS DE MORA"
 ];
@@ -365,11 +367,11 @@ const motivosAsesor = [
 const motivosCliente = [
 "COMPORTAMIENTO / EVASIÓN DEL PROCESO",
 "HABILIDAD / MANEJO DE CLIENTE CRÍTICO",
-"CONOCIMIENTO -  PRODUCTOS",
+"CONOCIMIENTO - PRODUCTOS",
 "HABILIDAD - ASESOR NO TIENE SENTIDO DE URGENCIA",
 "HABILIDAD - ASESOR CARECE DE EMPATÍA",
 "HABILIDAD / MANEJO DE APLICATIVOS",
-"CONOCIMIENTO /APLICATIVOS DISPONIBLES",
+"CONOCIMIENTO / APLICATIVOS DISPONIBLES",
 "CONOCIMIENTO / APLICATIVOS DE RETENCIÓN"
 ];
 
@@ -398,43 +400,46 @@ const motivosExperiencia = [
 "CLIENTE DISCONFORME POR OFERTA NO APLICADA"
 ];
 
-
-
 function cargarMotivos(lista) {
     Motivocausaraiz.innerHTML = '<option value="">Selecciona</option>';
-    
+
     lista.forEach(motivo => {
-        let option1 = new Option(motivo, motivo);
-        let option2 = new Option(motivo, motivo);
-	let option3 = new Option(motivo, motivo);
-	let option4 = new Option(motivo, motivo);
-        Motivocausaraiz.add(option1);
-        
+        let option = new Option(motivo, motivo);
+        Motivocausaraiz.add(option);
     });
 }
 
 servicioSelect.addEventListener("change", function() {
-    if (this.value === "ASESOR") {
-        cargarMotivos(motivosAsesor);
-    } 
-    else if (this.value === "CLIENTE" ) {
-        cargarMotivos(motivosCliente);
-    } 
-    else if (this.value === "VMO" ) {
-        cargarMotivos(motivosVmo);
-    } 	
-    else if (this.value === "EXPERIENCIA ANTERIOR" ) {
-        cargarMotivos(motivosExperiencia);
+
+    switch (this.value) {
+        case "ASESOR":
+            cargarMotivos(motivosAsesor);
+            break;
+
+        case "CLIENTE":
+            cargarMotivos(motivosCliente);
+            break;
+
+        case "VMO":
+            cargarMotivos(motivosVmo);
+            break;
+
+        case "EXPERIENCIA ANTERIOR":
+            cargarMotivos(motivosExperiencia);
+            break;
+
+        default:
+            Motivocausaraiz.innerHTML = '<option value="">Selecciona</option>';
     }
-    else {
-        Motivocausaraiz.innerHTML = '<option value="">Selecciona</option>';
-      
-    }
+
+});
+
 });
 </script>
   
 </body>
 </html>
+
 
 
 
