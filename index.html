@@ -219,8 +219,94 @@ button:hover{ background:#0056b3; }
 
 </select>
 </div>
+<div class="campo">
+<label>Motivo de Baja Registrado</label>
+<select id="motivoRegistrado" name="entry.462623756" required>
+<option value="">Selecciona</option>
+</select>
+</div>
+
+<div class="campo">
+<label>Motivo de Baja Real</label>
+<select id="motivoReal" name="entry.1173442708" required>
+<option value="">Selecciona</option>
+</select>
+</div>
+
+// ========= CONDICION DE CAMPO MOTIVO DE BAJA ======
+<script>
+const servicioSelect = document.getElementById("Servicio");
+const motivoRegistrado = document.getElementById("motivoRegistrado");
+const motivoReal = document.getElementById("motivoReal");
+
+const motivosFija = [
+"COMPETENCIA CON MEJOR PRECIO",
+"FALLA MASIVA",
+"FALLECIMIENTO",
+"MALA EXPERIENCIA TÉCNICA",
+"NO ENTREGA INFORMACIÓN",
+"NO HAY FACTIBILIDAD",
+"NO RECONOCE VENTA",
+"OFERTA NO APLICADA",
+"RECLAMO AJUSTE IPC",
+"RECLAMOS FACTURACIÓN",
+"RENOVACIÓN DESCUENTO",
+"SITUACION ECONÓMICA",
+"SUSTITUYE POR PRODUCTO MOVISTAR",
+"TRASLADO",
+"BAJA NO CURSADA",
+"COBROS EN LA BOLETA",
+"LLAMADA CORTA",
+"LLAMADA NO SE ENCUENTRA EN VERINT",
+"LLAMADA SIN ATENCIÓN"
+];
+
+const motivosMovil = [
+"CAMBIO A LA COMPETENCIA",
+"CLIENTE CON DEUDA",
+"MAL FUNCIONAMIENTO DEL PRODUCTO",
+"MALA EXPERIENCIA EN LA VENTA / POSTVENTA",
+"NECESITA REDUCIR GASTOS",
+"NO RECONOCE LA VENTA",
+"NO USA EL PRODUCTO",
+"SUSTITUYE POR OTRO SERVICIO",
+"VIAJE AL EXTRANJERO",
+"NO APLICA",
+"BAJA NO CURSADA",
+"COBROS EN LA BOLETA",
+"LLAMADA CORTA",
+"LLAMADA NO SE ENCUENTRA EN VERINT",
+"LLAMADA SIN ATENCIÓN"
+];
+
+function cargarMotivos(lista) {
+    motivoRegistrado.innerHTML = '<option value="">Selecciona</option>';
+    motivoReal.innerHTML = '<option value="">Selecciona</option>';
+
+    lista.forEach(motivo => {
+        let option1 = new Option(motivo, motivo);
+        let option2 = new Option(motivo, motivo);
+        motivoRegistrado.add(option1);
+        motivoReal.add(option2);
+    });
+}
+
+servicioSelect.addEventListener("change", function() {
+    if (this.value === "RETENCIONES FIJA") {
+        cargarMotivos(motivosFija);
+    } 
+    else if (this.value === "RETENCIONES MOVIL" || this.value === "CONTIGO") {
+        cargarMotivos(motivosMovil);
+    } 
+    else {
+        motivoRegistrado.innerHTML = '<option value="">Selecciona</option>';
+        motivoReal.innerHTML = '<option value="">Selecciona</option>';
+    }
+});
+</script>
 
   
 </body>
 </html>
+
 
