@@ -362,9 +362,8 @@ servicioSelect.addEventListener("change", function() {
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-const tipoMuestra = document.getElementById("Tipodemuestra");
-const causaRaiz = document.getElementById("Cauzaraiz");
-const motivoCausaRaiz = document.getElementById("Motivocausaraiz");
+const servicioSelect = document.getElementById("Cauzaraiz");
+const Motivocausaraiz = document.getElementById("Motivocausaraiz");
 
 const motivosAsesor = [
 "CLIENTE CUELGA SIN FINALIZAR PROCESO",
@@ -412,18 +411,15 @@ const motivosExperiencia = [
 ];
 
 function cargarMotivos(lista) {
-    motivoCausaRaiz.innerHTML = '<option value="">Selecciona</option>';
+    Motivocausaraiz.innerHTML = '<option value="">Selecciona</option>';
+
     lista.forEach(motivo => {
-        motivoCausaRaiz.add(new Option(motivo, motivo));
+        let option = new Option(motivo, motivo);
+        Motivocausaraiz.add(option);
     });
 }
 
-causaRaiz.addEventListener("change", function() {
-
-    // 🔴 CONDICIÓN PRINCIPAL
-    if (tipoMuestra.value !== "EPA") {
-        return; // si no es EPA no hace nada
-    }
+servicioSelect.addEventListener("change", function() {
 
     switch (this.value) {
         case "ASESOR":
@@ -443,16 +439,9 @@ causaRaiz.addEventListener("change", function() {
             break;
 
         default:
-            motivoCausaRaiz.innerHTML = '<option value="">Selecciona</option>';
+            Motivocausaraiz.innerHTML = '<option value="">Selecciona</option>';
     }
 
-});
-
-// Limpia si cambian Tipo de Muestra
-tipoMuestra.addEventListener("change", function(){
-    if (this.value !== "EPA") {
-        motivoCausaRaiz.innerHTML = '<option value="">Selecciona</option>';
-    }
 });
 
 });
@@ -460,6 +449,7 @@ tipoMuestra.addEventListener("change", function(){
   
 </body>
 </html>
+
 
 
 
