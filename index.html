@@ -107,9 +107,8 @@ textarea {
 </style>
 </head>
 
- <script>
+<script>
 document.addEventListener("DOMContentLoaded", function () {
-
 const textarea = document.getElementById("descripcionNoContencion");
 
 textarea.addEventListener("input", function () {
@@ -462,22 +461,23 @@ textarea.addEventListener("input", function () {
 </select>
 </div>  
   
+
+<div class="campo">
 <label>Detalle de la causa del Desvio</label>
-<textarea id="Causadesvio"
+<textarea id="Detallecausadesvio"
           name="entry.249344188"
-          rows="2"
-          required
-          style="resize:none; overflow:hidden;"></textarea>
+          rows="4"
+          required></textarea>
 </div>
 
+<div class="campo">
 <label>Resumen de la Llamada</label>
 <textarea id="Resumenllamada"
           name="entry.1970751650"
-          rows="2"
-          required
-          style="resize:none; overflow:hidden;"></textarea>
+          rows="4"
+          required></textarea>
 </div>
-
+  
 <div class="campo">
 <label>Accion de Seguimiento</label>
 <select id="Seguimiento" name="entry.1722660845" required>
@@ -764,6 +764,7 @@ causaRaiz.addEventListener("change", validarCondiciones);
   
 </body>
 </html>
+
 
 
 
