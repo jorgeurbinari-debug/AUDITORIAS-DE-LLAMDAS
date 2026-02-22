@@ -345,7 +345,7 @@ textarea.addEventListener("input", function () {
 <option value="REBATIMIENTO DE OBJECIONES">REBATIMIENTO DE OBJECIONES</option>
 <option value="NEGOCIACIÓN">NEGOCIACIÓN</option>
 <option value="HABILIDAD CON LOS APLICATIVOS (DEMORA EN IMPACTO)">HABILIDAD CON LOS APLICATIVOS (DEMORA EN IMPACTO)</option>
-<option value="CUMPLIMIENTO DE PROCESO">CUMPLIMIENTO DE PROCESO</option
+<option value="CUMPLIMIENTO DE PROCESO">CUMPLIMIENTO DE PROCESO</option>
 </select>
 </div>
 
@@ -362,7 +362,7 @@ textarea.addEventListener("input", function () {
 <option value="REBATIMIENTO DE OBJECIONES">REBATIMIENTO DE OBJECIONES</option>
 <option value="NEGOCIACIÓN">NEGOCIACIÓN</option>
 <option value="HABILIDAD CON LOS APLICATIVOS (DEMORA EN IMPACTO)">HABILIDAD CON LOS APLICATIVOS (DEMORA EN IMPACTO)</option>
-<option value="CUMPLIMIENTO DE PROCESO">CUMPLIMIENTO DE PROCESO</option
+<option value="CUMPLIMIENTO DE PROCESO">CUMPLIMIENTO DE PROCESO</option>
 </select>
 </div>
 
@@ -380,7 +380,7 @@ textarea.addEventListener("input", function () {
 <option value="REBATIMIENTO DE OBJECIONES">REBATIMIENTO DE OBJECIONES</option>
 <option value="NEGOCIACIÓN">NEGOCIACIÓN</option>
 <option value="HABILIDAD CON LOS APLICATIVOS (DEMORA EN IMPACTO)">HABILIDAD CON LOS APLICATIVOS (DEMORA EN IMPACTO)</option>
-<option value="CUMPLIMIENTO DE PROCESO">CUMPLIMIENTO DE PROCESO</option
+<option value="CUMPLIMIENTO DE PROCESO">CUMPLIMIENTO DE PROCESO</option>
 </select>
 </div>
   
@@ -393,10 +393,43 @@ textarea.addEventListener("input", function () {
           style="resize:none; overflow:hidden;"></textarea>
 </div>
 
+<div class="campo">
+<label>Hubo Solucion al Req. del cliente</label>
+<select id="Solucionreq" name="entry.1954737468" required>
+<option value="">Selecciona</option>
+<option value="SI">SI</option>
+<option value="NO">NO</option>
+<option value="NO APLICA">NO APLICA</option>
+</select>
+</div>
 
+<div class="campo">
+<label>Tiene Opcion a Abordar</label>
+<select id="Opcionabordar" name="entry.2024872077" required>
+<option value="">Selecciona</option>
+<option value="SI">SI</option>
+<option value="NO">NO</option>
+</select>
+</div>
 
+<div class="campo">
+<label>Agente Ofrece</label>
+<select id="Agenteofrece" name="entry.64049186" required>
+<option value="">Selecciona</option>
+<option value="SI - CON INTENCION">SI - CON INTENCION</option>
+<option value="SI - SOLO INFORMATIVO">SI - SOLO INFORMATIVO</option>
+<option value="NO">NO</option>
+</select>
+</div>
+  
 
-
+<div class="campo">
+<label>Motivo de no venta</label>
+<select id="Noventa" name="entry.932601302" required>
+<option value="">Selecciona</option>
+</select>
+</div>
+  
   
 
   
@@ -563,9 +596,99 @@ servicioSelect.addEventListener("change", function() {
 
 });
 </script>
+
+///======NO VENTA======
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+const agenteOfrece = document.getElementById("Agenteofrece");
+const causaRaiz = document.getElementById("Cauzaraiz");
+const motivoNoVenta = document.getElementById("Noventa");
+
+const motivosAsesor = [
+"ASESOR NO ABORDA",
+"ASESOR SOLO INFORMA",
+"ASESOR NO REBATE OBJECIONES",
+"FALTA DE HABILIDAD BLANDA"
+];
+
+const motivosCliente = [
+"CLIENTE CRÍTICO / NO DESEA ESCUCHAR OFERTAS",
+"CLIENTE CORTA LLAMADA",
+"YA TIENE LOS PRODUCTOS",
+"NO DESEA NADA CON MOVISTAR",
+"MALA EXPERIENCIA CON LOS SERVICIOS"
+];
+
+const motivosVmo = [
+"SIN SOLUCIÓN DE AVERÍAS",
+"COBROS ALTOS EN SU SERVICIO ACTUAL",
+"DEMORA EN LAS INSTALACIONES",
+"CAÍDA DE SISTEMA",
+"OFERTA NO ES LO QUE ESPERABA",
+"CLIENTE SUSPENDIDO"
+];
+
+const motivosExperiencia = [
+"TRANSFERENCIA INCORRECTA A NUESTRA ÁREA",
+"MALA EXPERIENCIA CON LAS ATENCIONES ANTERIORES",
+"INFORMACIÓN INCORRECTA EN ATENCIÓN ANTERIOR",
+"DISCONFORME CON EL TIEMPO DE ESPERA EN TRANSFERENCIAS"
+];
+
+function cargarMotivos(lista) {
+    motivoNoVenta.innerHTML = '<option value="">Selecciona</option>';
+    lista.forEach(motivo => {
+        motivoNoVenta.add(new Option(motivo, motivo));
+    });
+}
+
+function validarCondiciones() {
+
+    const agenteValor = agenteOfrece.value.toLowerCase();
+
+    // 🔴 Solo ejecuta si cumple condición
+    if (agenteValor === "no" || agenteValor === "si - solo informativo") {
+
+        switch (causaRaiz.value) {
+
+            case "ASESOR":
+                cargarMotivos(motivosAsesor);
+                break;
+
+            case "CLIENTE":
+                cargarMotivos(motivosCliente);
+                break;
+
+            case "VMO":
+                cargarMotivos(motivosVmo);
+                break;
+
+            case "EXPERIENCIA ANTERIOR":
+                cargarMotivos(motivosExperiencia);
+                break;
+
+            default:
+                motivoNoVenta.innerHTML = '<option value="">Selecciona</option>';
+        }
+
+    } else {
+        // ❌ Si no cumple condición limpia
+        motivoNoVenta.innerHTML = '<option value="">Selecciona</option>';
+    }
+}
+
+// Ejecuta cuando cambie cualquiera de los dos campos
+agenteOfrece.addEventListener("change", validarCondiciones);
+causaRaiz.addEventListener("change", validarCondiciones);
+
+});
+</script>
+
   
 </body>
 </html>
+
 
 
 
