@@ -486,19 +486,19 @@ target="hidden_iframe">
 <option value="AMONESTACIÓN ESCRITA">AMONESTACIÓN ESCRITA</option>
 <option value="SUSPENSIÓN 1 DÍA">SUSPENSIÓN 1 DÍA</option>
 <option value="SUSPENSIÓN 3 DÍAS">SUSPENSIÓN 3 DÍAS</option>
-<option value="SUSPENSIÓN 8 DÍAS">SUSPENSIÓN 5 DÍAS</option>
+<option value="SUSPENSIÓN 5 DÍAS">SUSPENSIÓN 5 DÍAS</option>
 <option value="SUSPENSIÓN 8 DÍAS">SUSPENSIÓN 8 DÍAS</option>  
 </select>
 </div>  
 
-<div class="campo">
+<div class="campo" id="campo_inicio_aplazamiento">
 <label>Inicio de Aplazamiento</label>
 <input type="date" 
        name="entry.540982508" 
        required>
 </div>
 
-<div class="campo">
+<div class="campo" id="campo_fin_aplazamiento">
 <label>Fin de Aplazamiento</label>
 <input type="date" 
        name="entry.1574773486" 
@@ -647,7 +647,11 @@ function ocultarTodos(){
     todos.forEach(id=>{
         const campo = document.querySelector(`[name="entry.${id}"]`);
         if(campo){
-            campo.closest(".campo").style.display="none";
+            const contenedor = campo.closest(".campo");
+            contenedor.style.display="none";
+
+            // 🔥 Quitar required cuando se oculta
+            campo.required = false;
         }
     });
 }
@@ -656,6 +660,7 @@ function ocultarTodos(){
 function actualizarCampos(){
 
     ocultarTodos();
+   
 
     const seleccionados = Array.from(tipoMuestra.selectedOptions)
                                 .map(op => op.value);
@@ -677,7 +682,11 @@ function actualizarCampos(){
     camposAMostrar.forEach(id=>{
         const campo = document.querySelector(`[name="entry.${id}"]`);
         if(campo){
-            campo.closest(".campo").style.display="flex";
+            const contenedor = campo.closest(".campo");
+              contenedor.style.display="flex";
+
+              /* Activar required cuando se muestra*/
+              campo.required = true;
         }
     });
 }
@@ -687,7 +696,49 @@ tipoMuestra.addEventListener("change", actualizarCampos);
 
 /* Inicial */
 ocultarTodos();
+actualizarCampos();
 
+  /*<! ---- CONDICIONAL APLAZAMIENTO --->*/
+
+
+const seguimiento = document.getElementById("Seguimiento");
+
+const campoInicioAplazamiento = document.getElementById("campo_inicio_aplazamiento");
+const campoFinAplazamiento = document.getElementById("campo_fin_aplazamiento");
+
+function actualizarAplazamiento(){
+
+    const inputInicio = campoInicioAplazamiento.querySelector("input");
+    const inputFin = campoFinAplazamiento.querySelector("input");
+
+    if(seguimiento.value === "APLAZAMIENTO"){
+
+        campoInicioAplazamiento.style.display = "flex";
+        campoFinAplazamiento.style.display = "flex";
+
+        inputInicio.required = true;
+        inputFin.required = true;
+
+    } else {
+
+        campoInicioAplazamiento.style.display = "none";
+        campoFinAplazamiento.style.display = "none";
+
+        inputInicio.required = false;
+        inputFin.required = false;
+
+        inputInicio.value = "";
+        inputFin.value = "";
+    }
+}
+
+/* Evento */
+seguimiento.addEventListener("change", actualizarAplazamiento);
+
+/* Estado inicial */
+actualizarAplazamiento();
+
+  
 
   });
 
@@ -695,6 +746,7 @@ ocultarTodos();
 
 </body>
 </html>
+
 
 
 
