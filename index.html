@@ -714,20 +714,37 @@ causaRaiz.addEventListener("change", validarNoVenta);
 const form = document.getElementById("googleForm");
 const mensaje = document.getElementById("mensaje");
 
-form.addEventListener("submit", function(){
+form.addEventListener("submit", function(e) {
+    e.preventDefault(); // Evita que el formulario se envíe de inmediato
 
-    const servicioValor = servicio.value;
-    const liderValor = document.getElementById("Lider").value;
+    // Obtener todas las opciones seleccionadas de "Tipo de Muestra"
+    const selectedTypes = Array.from(tipoMuestra.selectedOptions).map(option => option.value);
+    
+    // Verifica si al menos se ha seleccionado un tipo de muestra
+    if (selectedTypes.length > 0) {
+        // Enviar el formulario para cada tipo seleccionado de manera secuencial
+        selectedTypes.forEach((type, index) => {
+            // Establece el valor de tipo de muestra para el envío
+            document.getElementById("Tipodemuestra").value = type;
+            
+            // Espera un pequeño tiempo antes de enviar el formulario para cada tipo de muestra
+            setTimeout(() => {
+                form.submit(); // Envía el formulario con el tipo de muestra actual
+                
+                // Muestra mensaje de confirmación para cada envío
+                const mensaje = document.getElementById("mensaje");
+                mensaje.innerText = `✅ Registro enviado para el tipo de muestra: ${type}`;
 
-    setTimeout(()=>{
-        form.reset();
-        servicio.value = servicioValor;
-        document.getElementById("Lider").value = liderValor;
-        mensaje.innerText="✅ Registro enviado correctamente";
-    },1000);
-
+                // Si no es el último tipo, limpia el mensaje para el siguiente envío
+                if (index < selectedTypes.length - 1) {
+                    mensaje.innerText = ""; 
+                }
+            }, index * 1500); // 1500ms de intervalo entre envíos, ajustable
+        });
+    } else {
+        alert("Por favor, seleccione al menos un tipo de muestra.");
+    }
 });
-
 
 /* ===============================
    CONDICIONAL TIPO DE MUESTRA
@@ -870,6 +887,7 @@ actualizarAplazamiento();
 
 </body>
 </html>
+
 
 
 
