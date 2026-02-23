@@ -714,7 +714,14 @@ causaRaiz.addEventListener("change", validarNoVenta);
 const form = document.getElementById("googleForm");
 const mensaje = document.getElementById("mensaje");
 
-form.addEventListener("submit", function(e) {
+document.addEventListener("DOMContentLoaded", function() {
+  const form = document.getElementById("googleForm");
+  const mensaje = document.getElementById("mensaje");
+
+  // Esto es para el "Tipo de Muestra"
+  const tipoMuestra = document.getElementById("Tipodemuestra");
+
+  form.addEventListener("submit", function(e) {
     e.preventDefault(); // Evita que el formulario se envíe de inmediato
 
     // Obtener todas las opciones seleccionadas de "Tipo de Muestra"
@@ -722,28 +729,25 @@ form.addEventListener("submit", function(e) {
     
     // Verifica si al menos se ha seleccionado un tipo de muestra
     if (selectedTypes.length > 0) {
-        // Enviar el formulario para cada tipo seleccionado de manera secuencial
-        selectedTypes.forEach((type, index) => {
-            // Establece el valor de tipo de muestra para el envío
-            document.getElementById("Tipodemuestra").value = type;
-            
-            // Espera un pequeño tiempo antes de enviar el formulario para cada tipo de muestra
-            setTimeout(() => {
-                form.submit(); // Envía el formulario con el tipo de muestra actual
-                
-                // Muestra mensaje de confirmación para cada envío
-                const mensaje = document.getElementById("mensaje");
-                mensaje.innerText = `✅ Registro enviado para el tipo de muestra: ${type}`;
+        // Establece el valor de tipo de muestra para el envío (como un array)
+        document.getElementById("Tipodemuestra").name = 'entry.1613585774'; // El nombre del campo en Google Forms
 
-                // Si no es el último tipo, limpia el mensaje para el siguiente envío
-                if (index < selectedTypes.length - 1) {
-                    mensaje.innerText = ""; 
-                }
-            }, index * 1500); // 1500ms de intervalo entre envíos, ajustable
-        });
+        // Creamos un campo oculto para enviar todos los valores seleccionados como array
+        const hiddenField = document.createElement('input');
+        hiddenField.type = 'hidden';
+        hiddenField.name = 'entry.1613585774'; // Asegúrate de que este "name" sea el correcto para Google Forms
+        hiddenField.value = selectedTypes.join(','); // Se unen los valores seleccionados como un string separado por comas
+        form.appendChild(hiddenField);
+      
+        // Espera un pequeño tiempo antes de enviar el formulario para cada tipo de muestra
+        setTimeout(() => {
+          form.submit(); // Envía el formulario con el tipo de muestra actual
+          mensaje.innerText = "✅ Registro enviado correctamente";
+        }, 1000); // 1 segundo de espera
     } else {
-        alert("Por favor, seleccione al menos un tipo de muestra.");
+      alert("Por favor, seleccione al menos un tipo de muestra.");
     }
+  });
 });
 
 /* ===============================
@@ -887,6 +891,7 @@ actualizarAplazamiento();
 
 </body>
 </html>
+
 
 
 
