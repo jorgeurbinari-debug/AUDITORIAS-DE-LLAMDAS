@@ -554,7 +554,6 @@ document.addEventListener("DOMContentLoaded", function(){
 
 /*=====MOTIVIOS EPA SEGUN SELECCION=====*/
 document.addEventListener("DOMContentLoaded", function () {
-
     const servicioSelect = document.getElementById("Cauzaraiz");
     const Motivocausaraiz = document.getElementById("Motivocausaraiz");
 
@@ -603,6 +602,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "CLIENTE DISCONFORME POR OFERTA NO APLICADA"
     ];
 
+    // Función para cargar los motivos en el campo de "Motivo de Causa Raíz"
     function cargarMotivos(lista) {
         Motivocausaraiz.innerHTML = '<option value="">Selecciona</option>';
         lista.forEach(motivo => {
@@ -611,7 +611,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    servicioSelect.addEventListener("change", function() {
+    // Cambio en el campo "Causa Raíz" (Cauzaraiz)
+    servicioSelect.addEventListener("change", function () {
         switch (this.value) {
             case "ASESOR": cargarMotivos(motivosAsesor); break;
             case "CLIENTE": cargarMotivos(motivosCliente); break;
@@ -622,9 +623,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
-
-
-
   
 /* ===============================
    MOTIVO DE BAJA
@@ -856,6 +854,7 @@ actualizarAplazamiento();
 
 </body>
 </html>
+
 
 
 
