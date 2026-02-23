@@ -517,93 +517,75 @@ target="hidden_iframe">
 document.addEventListener("DOMContentLoaded", function(){
 
 /*=====MOTIVIOS EPA SEGUN SELECCION=====*/
-<script>
 document.addEventListener("DOMContentLoaded", function () {
 
-const servicioSelect = document.getElementById("Cauzaraiz");
-const Motivocausaraiz = document.getElementById("Motivocausaraiz");
+    const servicioSelect = document.getElementById("Cauzaraiz");
+    const Motivocausaraiz = document.getElementById("Motivocausaraiz");
 
-const motivosAsesor = [
-"CLIENTE CUELGA SIN FINALIZAR PROCESO",
-"NO HAY MOTIVO DE MALA CALIFICACION",
-"NO GESTIONABLE (TERCERO)",
-"NO GESTIONABLE (NO BRINDA DATOS)",
-"CLIENTE SOLICITA AJUSTE QUE NO APLICA",
-"NO CONFORME POR COBROS DE MORA"
-];
+    const motivosAsesor = [
+        "CLIENTE CUELGA SIN FINALIZAR PROCESO",
+        "NO HAY MOTIVO DE MALA CALIFICACION",
+        "NO GESTIONABLE (TERCERO)",
+        "NO GESTIONABLE (NO BRINDA DATOS)",
+        "CLIENTE SOLICITA AJUSTE QUE NO APLICA",
+        "NO CONFORME POR COBROS DE MORA"
+    ];
 
-const motivosCliente = [
-"COMPORTAMIENTO / EVASIÓN DEL PROCESO",
-"HABILIDAD / MANEJO DE CLIENTE CRÍTICO",
-"CONOCIMIENTO - PRODUCTOS",
-"HABILIDAD - ASESOR NO TIENE SENTIDO DE URGENCIA",
-"HABILIDAD - ASESOR CARECE DE EMPATÍA",
-"HABILIDAD / MANEJO DE APLICATIVOS",
-"CONOCIMIENTO / APLICATIVOS DISPONIBLES",
-"CONOCIMIENTO / APLICATIVOS DE RETENCIÓN"
-];
+    const motivosCliente = [
+        "COMPORTAMIENTO / EVASIÓN DEL PROCESO",
+        "HABILIDAD / MANEJO DE CLIENTE CRÍTICO",
+        "CONOCIMIENTO - PRODUCTOS",
+        "HABILIDAD - ASESOR NO TIENE SENTIDO DE URGENCIA",
+        "HABILIDAD - ASESOR CARECE DE EMPATÍA",
+        "HABILIDAD / MANEJO DE APLICATIVOS",
+        "CONOCIMIENTO / APLICATIVOS DISPONIBLES",
+        "CONOCIMIENTO / APLICATIVOS DE RETENCIÓN"
+    ];
 
-const motivosVmo = [
-"SE CAE LLAMADA ABRUPTAMENTE",
-"APLICATIVOS DEGRADADO (PROTOCOLO)",
-"NO APARECE LLAMADA EN EL GRABADOR",
-"CAÍDA DE SISTEMA",
-"LLAMADA SIN AUDIO",
-"CLIENTE DISCONFORME CON PROCESO DE BIOMETRIA",
-"CLIENTE DISCONFORME CON OFERTA DISPONIBLE EN SISTEMA",
-"LA SOLUCIÓN DEPENDE DE OTRA ÁREA (SUCURSAL PRESENCIAL)",
-"LA SOLUCIÓN DEPENDE DE OTRA ÁREA (SOPORTE TÉCNICO)",
-"LA SOLUCIÓN DEPENDE DE OTRA ÁREA (ACTIVACIÓN DE PLATAFORMAS)",
-"DISCONFORMIDAD POR ENTREGA DE EQUIPOS EN SUCURSAL"
-];
+    const motivosVmo = [
+        "SE CAE LLAMADA ABRUPTAMENTE",
+        "APLICATIVOS DEGRADADO (PROTOCOLO)",
+        "NO APARECE LLAMADA EN EL GRABADOR",
+        "CAÍDA DE SISTEMA",
+        "LLAMADA SIN AUDIO",
+        "CLIENTE DISCONFORME CON PROCESO DE BIOMETRIA",
+        "CLIENTE DISCONFORME CON OFERTA DISPONIBLE EN SISTEMA",
+        "LA SOLUCIÓN DEPENDE DE OTRA ÁREA (SUCURSAL PRESENCIAL)",
+        "LA SOLUCIÓN DEPENDE DE OTRA ÁREA (SOPORTE TÉCNICO)",
+        "LA SOLUCIÓN DEPENDE DE OTRA ÁREA (ACTIVACIÓN DE PLATAFORMAS)",
+        "DISCONFORMIDAD POR ENTREGA DE EQUIPOS EN SUCURSAL"
+    ];
 
-const motivosExperiencia = [
-"EJECUTIVO DE OTRO ALIADO NO ATIENDE SOLICITUD DEL CLIENTE",
-"EJECUTIVO DE OTRO ALIADO ENTREGA INFORMACION ERRADA AL CLIENTE",
-"ASESOR DE SUCURSAL NO ATIENDE LA SOLICITUD DEL CLIENTE",
-"CLIENTE INCONFORME POR TIEMPO DE ESPERA PARA LLEGAR A RETENCIÓN",
-"MALA ATENCION DE EJECUTIVO ANTERIOR (OTRO ALIADO)",
-"EJECUTIVO ALIADO ENTREGA INFORMACION ERRADA AL CLIENTE",
-"NO APLICA TRANSFERENCIA A RETENCIÓN",
-"CLIENTE DISCONFORME POR OFERTA NO APLICADA"
-];
+    const motivosExperiencia = [
+        "EJECUTIVO DE OTRO ALIADO NO ATIENDE SOLICITUD DEL CLIENTE",
+        "EJECUTIVO DE OTRO ALIADO ENTREGA INFORMACION ERRADA AL CLIENTE",
+        "ASESOR DE SUCURSAL NO ATIENDE LA SOLICITUD DEL CLIENTE",
+        "CLIENTE INCONFORME POR TIEMPO DE ESPERA PARA LLEGAR A RETENCIÓN",
+        "MALA ATENCION DE EJECUTIVO ANTERIOR (OTRO ALIADO)",
+        "EJECUTIVO ALIADO ENTREGA INFORMACION ERRADA AL CLIENTE",
+        "NO APLICA TRANSFERENCIA A RETENCIÓN",
+        "CLIENTE DISCONFORME POR OFERTA NO APLICADA"
+    ];
 
-function cargarMotivos(lista) {
-    Motivocausaraiz.innerHTML = '<option value="">Selecciona</option>';
-
-    lista.forEach(motivo => {
-        let option = new Option(motivo, motivo);
-        Motivocausaraiz.add(option);
-    });
-}
-
-servicioSelect.addEventListener("change", function() {
-
-    switch (this.value) {
-        case "ASESOR":
-            cargarMotivos(motivosAsesor);
-            break;
-
-        case "CLIENTE":
-            cargarMotivos(motivosCliente);
-            break;
-
-        case "VMO":
-            cargarMotivos(motivosVmo);
-            break;
-
-        case "EXPERIENCIA ANTERIOR":
-            cargarMotivos(motivosExperiencia);
-            break;
-
-        default:
-            Motivocausaraiz.innerHTML = '<option value="">Selecciona</option>';
+    function cargarMotivos(lista) {
+        Motivocausaraiz.innerHTML = '<option value="">Selecciona</option>';
+        lista.forEach(motivo => {
+            let option = new Option(motivo, motivo);
+            Motivocausaraiz.add(option);
+        });
     }
 
-});
+    servicioSelect.addEventListener("change", function() {
+        switch (this.value) {
+            case "ASESOR": cargarMotivos(motivosAsesor); break;
+            case "CLIENTE": cargarMotivos(motivosCliente); break;
+            case "VMO": cargarMotivos(motivosVmo); break;
+            case "EXPERIENCIA ANTERIOR": cargarMotivos(motivosExperiencia); break;
+            default: Motivocausaraiz.innerHTML = '<option value="">Selecciona</option>';
+        }
+    });
 
 });
-</script>
 
 
 
@@ -838,6 +820,7 @@ actualizarAplazamiento();
 
 </body>
 </html>
+
 
 
 
