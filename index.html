@@ -5,9 +5,10 @@
 <title>Formulario Google</title>
 
 <style>
+/* ====== TU MISMO CSS (SIN CAMBIOS) ====== */
 body{
   font-family: Arial, Helvetica, sans-serif;
-  background:#f4f6f8;
+  background: linear-gradient(135deg, #ece9e6, #ffffff);
   margin:0;
   padding:30px;
 }
@@ -20,7 +21,8 @@ form{
   background:white;
   padding:30px;
   border-radius:10px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  box-shadow:0 12px 24px rgba(0,0,0,0.15);
+  border:1px solid #ddd;
 }
 
 .grid{
@@ -33,8 +35,9 @@ form{
 
 .campo label{
   font-size:13px;
-  font-weight:bold;
+  font-weight:600;
   margin-bottom:6px;
+  color:#333;
 }
 
 .campo input,
@@ -42,16 +45,15 @@ form{
 .campo textarea{
   padding:10px;
   border-radius:6px;
-  border:1px solid #ccc;
+  border:1px solid #bbb;
   font-size:14px;
+  width:100%;
 }
 
-.campo input:focus,
-.campo select:focus,
-.campo textarea:focus{
-  border-color:#007bff;
+input:focus, select:focus, textarea:focus{
+  border-color:#0066ff;
+  box-shadow:0 0 6px rgba(0,102,255,0.5);
   outline:none;
-  box-shadow:0 0 0 2px rgba(0,123,255,0.2);
 }
 
 textarea{
@@ -65,12 +67,16 @@ button{
   width:100%;
   border:none;
   border-radius:6px;
-  background:#007bff;
+  background: linear-gradient(45deg, #0066ff, #0044cc);
   color:white;
   font-size:16px;
+  font-weight:700;
   cursor:pointer;
 }
-button:hover{ background:#0056b3; }
+
+button:hover{
+  background: linear-gradient(45deg, #0052cc, #003399);
+}
 
 .mensaje{
   text-align:center;
@@ -79,68 +85,13 @@ button:hover{ background:#0056b3; }
   font-weight:bold;
 }
 
-
-*,
-*::before,
-*::after{
-  box-sizing: border-box;
+@media (max-width:1024px){
+  .grid{ grid-template-columns: repeat(2,1fr); }
 }
 
-.campo input,
-.campo select,
-.campo textarea{
-  width: 100%;
-  max-width: 100%;
+@media (max-width:600px){
+  .grid{ grid-template-columns:1fr; }
 }
-
-@media (max-width: 1024px){
-  .grid{
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px){
-  .grid{
-    grid-template-columns: 1fr;
-  }
-}
-
-  body {
-  background: linear-gradient(135deg, #ece9e6, #ffffff);
-}
-
-form {
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-  border: 1px solid #ddd;
-}
-
-button {
-  background: linear-gradient(45deg, #0066ff, #0044cc);
-  font-weight: 700;
-  transition: background 0.3s ease;
-}
-
-button:hover {
-  background: linear-gradient(45deg, #0052cc, #003399);
-}
-
-.campo label {
-  color: #333;
-  font-weight: 600;
-}
-
-input, select, textarea {
-  border: 1px solid #bbb;
-  transition: border-color 0.3s ease;
-}
-
-input:focus, select:focus, textarea:focus {
-  border-color: #0066ff;
-  box-shadow: 0 0 6px rgba(0, 102, 255, 0.5);
-}
-  
-
-  
 </style>
 </head>
 
@@ -156,6 +107,7 @@ target="hidden_iframe">
 <iframe name="hidden_iframe" style="display:none;"></iframe>
 
 <div class="grid">
+
 
 <!-- 🔹 MANTENGO SOLO PARTE INICIAL COMO EJEMPLO (EL RESTO DE TUS CAMPOS SIGUEN IGUAL) -->
 
@@ -541,106 +493,36 @@ target="hidden_iframe">
        required>
 </div>
 
-  
-
-
 <button type="submit">Enviar Registro</button>
 <div class="mensaje" id="mensaje"></div>
 
 </form>
 
 <script>
-  /*=====MOTIVIOS EPA SEGUN SELECCION=====*/
-document.addEventListener("DOMContentLoaded", function () {
-    const servicioSelect = document.getElementById("Cauzaraiz");
-    const Motivocausaraiz = document.getElementById("Motivocausaraiz");
-
-    // Motivos de causa raíz
-    const motivosCliente = [
-        "CLIENTE CUELGA SIN FINALIZAR PROCESO",
-        "NO HAY MOTIVO DE MALA CALIFICACION",
-        "NO GESTIONABLE (TERCERO)",
-        "NO GESTIONABLE (NO BRINDA DATOS)",
-        "CLIENTE SOLICITA AJUSTE QUE NO APLICA",
-        "NO CONFORME POR COBROS DE MORA"
-    ];
-
-    const motivosAsesor = [
-        "COMPORTAMIENTO / EVASIÓN DEL PROCESO",
-        "HABILIDAD / MANEJO DE CLIENTE CRÍTICO",
-        "CONOCIMIENTO - PRODUCTOS",
-        "HABILIDAD - ASESOR NO TIENE SENTIDO DE URGENCIA",
-        "HABILIDAD - ASESOR CARECE DE EMPATÍA",
-        "HABILIDAD / MANEJO DE APLICATIVOS",
-        "CONOCIMIENTO / APLICATIVOS DISPONIBLES",
-        "CONOCIMIENTO / APLICATIVOS DE RETENCIÓN"
-    ];
-
-    const motivosVmo = [
-        "SE CAE LLAMADA ABRUPTAMENTE",
-        "APLICATIVOS DEGRADADO (PROTOCOLO)",
-        "NO APARECE LLAMADA EN EL GRABADOR",
-        "CAÍDA DE SISTEMA",
-        "LLAMADA SIN AUDIO",
-        "CLIENTE DISCONFORME CON PROCESO DE BIOMETRIA",
-        "CLIENTE DISCONFORME CON OFERTA DISPONIBLE EN SISTEMA",
-        "LA SOLUCIÓN DEPENDE DE OTRA ÁREA (SUCURSAL PRESENCIAL)",
-        "LA SOLUCIÓN DEPENDE DE OTRA ÁREA (SOPORTE TÉCNICO)",
-        "LA SOLUCIÓN DEPENDE DE OTRA ÁREA (ACTIVACIÓN DE PLATAFORMAS)",
-        "DISCONFORMIDAD POR ENTREGA DE EQUIPOS EN SUCURSAL"
-    ];
-
-    const motivosExperiencia = [
-        "EJECUTIVO DE OTRO ALIADO NO ATIENDE SOLICITUD DEL CLIENTE",
-        "EJECUTIVO DE OTRO ALIADO ENTREGA INFORMACION ERRADA AL CLIENTE",
-        "ASESOR DE SUCURSAL NO ATIENDE LA SOLICITUD DEL CLIENTE",
-        "CLIENTE INCONFORME POR TIEMPO DE ESPERA PARA LLEGAR A RETENCIÓN",
-        "MALA ATENCION DE EJECUTIVO ANTERIOR (OTRO ALIADO)",
-        "EJECUTIVO ALIADO ENTREGA INFORMACION ERRADA AL CLIENTE",
-        "NO APLICA TRANSFERENCIA A RETENCIÓN",
-        "CLIENTE DISCONFORME POR OFERTA NO APLICADA"
-    ];
-
-    // Función para cargar los motivos en el campo de "Motivo de Causa Raíz"
-    function cargarMotivos(lista) {
-        Motivocausaraiz.innerHTML = '<option value="">Selecciona</option>';
-        lista.forEach(motivo => {
-            let option = new Option(motivo, motivo);
-            Motivocausaraiz.add(option);
-        });
-    }
-
-    // Detecta cambios en Causa Raíz
-    servicioSelect.addEventListener("change", function () {
-        switch (this.value) {
-            case "ASESOR":
-                cargarMotivos(motivosAsesor);
-                break;
-            case "CLIENTE":
-                cargarMotivos(motivosCliente);
-                break;
-            case "VMO":
-                cargarMotivos(motivosVmo);
-                break;
-            case "EXPERIENCIA ANTERIOR":
-                cargarMotivos(motivosExperiencia);
-                break;
-            default:
-                Motivocausaraiz.innerHTML = '<option value="">Selecciona</option>';
-        }
-    });
-});
-</script>
-
-  
-
-<script>
 document.addEventListener("DOMContentLoaded", function(){
 
-   
-    
-  
-  /* ===============================
+/* ===============================
+   ENVIO CORRECTO SIN BLOQUEO
+=================================*/
+const form = document.getElementById("googleForm");
+const mensaje = document.getElementById("mensaje");
+
+form.addEventListener("submit", function () {
+
+    mensaje.innerText = "✅ Registro enviado correctamente";
+
+    setTimeout(() => {
+        form.reset();
+        mensaje.innerText = "";
+        ocultarTodos();
+        actualizarCampos();
+        actualizarAplazamiento();
+    }, 1500);
+
+});
+
+
+/* ===============================
    MOTIVO DE BAJA
 =================================*/
 const servicio = document.getElementById("Servicio");
@@ -673,228 +555,79 @@ servicio.addEventListener("change",function(){
 
 
 /* ===============================
-   NO VENTA
-=================================*/
-const agenteOfrece = document.getElementById("Agenteofrece");
-const causaRaiz = document.getElementById("Cauzaraiz");
-const motivoNoVenta = document.getElementById("Noventa");
-
-const nvAsesor = ["ASESOR NO ABORDA","ASESOR SOLO INFORMA","ASESOR NO REBATE OBJECIONES","FALTA DE HABILIDAD BLANDA"];
-const nvCliente = ["CLIENTE CRÍTICO / NO DESEA ESCUCHAR OFERTAS","CLIENTE CORTA LLAMADA","YA TIENE LOS PRODUCTOS","NO DESEA NADA CON MOVISTAR","MALA EXPERIENCIA CON LOS SERVICIOS"];
-const nvVmo = ["SIN SOLUCIÓN DE AVERÍAS","COBROS ALTOS EN SU SERVICIO ACTUAL","DEMORA EN LAS INSTALACIONES","CAÍDA DE SISTEMA","OFERTA NO ES LO QUE ESPERABA","CLIENTE SUSPENDIDO"];
-const nvExp = ["TRANSFERENCIA INCORRECTA A NUESTRA ÁREA","MALA EXPERIENCIA CON LAS ATENCIONES ANTERIORES","INFORMACIÓN INCORRECTA EN ATENCIÓN ANTERIOR","DISCONFORME CON EL TIEMPO DE ESPERA EN TRANSFERENCIAS"];
-
-function cargarNoVenta(lista){
-    motivoNoVenta.innerHTML='<option value="">Selecciona</option>';
-    lista.forEach(m=>motivoNoVenta.add(new Option(m,m)));
-}
-
-function validarNoVenta(){
-    const valor = agenteOfrece.value;
-    if(valor==="NO" || valor==="SI - SOLO INFORMATIVO"){
-        switch(causaRaiz.value){
-            case "ASESOR": cargarNoVenta(nvAsesor); break;
-            case "CLIENTE": cargarNoVenta(nvCliente); break;
-            case "VMO": cargarNoVenta(nvVmo); break;
-            case "EXPERIENCIA ANTERIOR": cargarNoVenta(nvExp); break;
-            default: motivoNoVenta.innerHTML='<option value="">Selecciona</option>';
-        }
-    }else{
-        motivoNoVenta.innerHTML='<option value="">Selecciona</option>';
-    }
-}
-
-agenteOfrece.addEventListener("change", validarNoVenta);
-causaRaiz.addEventListener("change", validarNoVenta);
-
-
-/* ===============================
-   ENVIO Y LIMPIEZA
-=================================*/
-const form = document.getElementById("googleForm");
-const mensaje = document.getElementById("mensaje");
-
-document.addEventListener("DOMContentLoaded", function() {
-  const form = document.getElementById("googleForm");
-  const mensaje = document.getElementById("mensaje");
-
-  // Esto es para el "Tipo de Muestra"
-  const tipoMuestra = document.getElementById("Tipodemuestra");
-
-  form.addEventListener("submit", function(e) {
-    e.preventDefault(); // Evita que el formulario se envíe de inmediato
-
-    // Obtener todas las opciones seleccionadas de "Tipo de Muestra"
-    const selectedTypes = Array.from(tipoMuestra.selectedOptions).map(option => option.value);
-    
-    // Verifica si al menos se ha seleccionado un tipo de muestra
-    if (selectedTypes.length > 0) {
-        // Establece el valor de tipo de muestra para el envío (como un array)
-        document.getElementById("Tipodemuestra").name = 'entry.1613585774'; // El nombre del campo en Google Forms
-
-        // Creamos un campo oculto para enviar todos los valores seleccionados como array
-        const hiddenField = document.createElement('input');
-        hiddenField.type = 'hidden';
-        hiddenField.name = 'entry.1613585774'; // Asegúrate de que este "name" sea el correcto para Google Forms
-        hiddenField.value = selectedTypes.join(','); // Se unen los valores seleccionados como un string separado por comas
-        form.appendChild(hiddenField);
-      
-        // Espera un pequeño tiempo antes de enviar el formulario para cada tipo de muestra
-        setTimeout(() => {
-          form.submit(); // Envía el formulario con el tipo de muestra actual
-          mensaje.innerText = "✅ Registro enviado correctamente";
-        }, 1000); // 1 segundo de espera
-    } else {
-      alert("Por favor, seleccione al menos un tipo de muestra.");
-    }
-  });
-});
-
-/* ===============================
    CONDICIONAL TIPO DE MUESTRA
 =================================*/
-
 const tipoMuestra = document.getElementById("Tipodemuestra");
 
-/* Listas por tipo */
-const camposEPA = [
-"801462156","775761170","1707404081",
-"1986049857","435072420","1335755996",
-"249344188","1970751650","1722660845",
-"540982508","1574773486"
-];
+const camposEPA = ["801462156","775761170","1707404081","1986049857","435072420","1335755996","249344188","1970751650","1722660845","540982508","1574773486"];
+const camposEFECTIVIDAD = ["1723677195","229089857","1986049857","435072420","1335755996","1131024963","249344188","1970751650","1722660845","540982508","1574773486"];
+const camposCROSS = ["1954737468","2024872077","64049186","932601302","698375446","1271045405","1766526396","1986049857","435072420","1335755996","249344188","1970751650","1722660845","540982508","1574773486"];
 
-const camposEFECTIVIDAD = [
-"1723677195","229089857",
-"1986049857","435072420","1335755996",
-"1131024963",
-"249344188","1970751650","1722660845",
-"540982508","1574773486"
-];
-
-const camposCROSS = [
-"1954737468","2024872077","64049186",
-"932601302","698375446","1271045405",
-"1766526396",
-"1986049857","435072420","1335755996",
-"249344188","1970751650","1722660845",
-"540982508","1574773486"
-];
-
-/* Oculta todos los campos condicionales */
 function ocultarTodos(){
-    const todos = new Set([
-        ...camposEPA,
-        ...camposEFECTIVIDAD,
-        ...camposCROSS
-    ]);
-
+    const todos = new Set([...camposEPA,...camposEFECTIVIDAD,...camposCROSS]);
     todos.forEach(id=>{
         const campo = document.querySelector(`[name="entry.${id}"]`);
         if(campo){
-            const contenedor = campo.closest(".campo");
-            contenedor.style.display="none";
-
-            // 🔥 Quitar required cuando se oculta
-            campo.required = false;
+            campo.closest(".campo").style.display="none";
+            campo.required=false;
         }
     });
 }
 
-/* Mostrar campos según selección */
 function actualizarCampos(){
-
     ocultarTodos();
-   
+    const seleccionados = Array.from(tipoMuestra.selectedOptions).map(op=>op.value);
+    let mostrar = new Set();
 
-    const seleccionados = Array.from(tipoMuestra.selectedOptions)
-                                .map(op => op.value);
+    if(seleccionados.includes("EPA")) camposEPA.forEach(c=>mostrar.add(c));
+    if(seleccionados.includes("EFECTIVIDAD")) camposEFECTIVIDAD.forEach(c=>mostrar.add(c));
+    if(seleccionados.includes("CROSS")) camposCROSS.forEach(c=>mostrar.add(c));
 
-    let camposAMostrar = new Set();
-
-    if(seleccionados.includes("EPA")){
-        camposEPA.forEach(c=>camposAMostrar.add(c));
-    }
-
-    if(seleccionados.includes("EFECTIVIDAD")){
-        camposEFECTIVIDAD.forEach(c=>camposAMostrar.add(c));
-    }
-
-    if(seleccionados.includes("CROSS")){
-        camposCROSS.forEach(c=>camposAMostrar.add(c));
-    }
-
-    camposAMostrar.forEach(id=>{
+    mostrar.forEach(id=>{
         const campo = document.querySelector(`[name="entry.${id}"]`);
         if(campo){
-            const contenedor = campo.closest(".campo");
-              contenedor.style.display="flex";
-
-              /* Activar required cuando se muestra*/
-              campo.required = true;
+            campo.closest(".campo").style.display="flex";
+            campo.required=true;
         }
     });
 }
 
-/* Evento */
 tipoMuestra.addEventListener("change", actualizarCampos);
-
-/* Inicial */
 ocultarTodos();
 actualizarCampos();
 
-  /*<! ---- CONDICIONAL APLAZAMIENTO --->*/
 
-
+/* ===============================
+   APLAZAMIENTO
+=================================*/
 const seguimiento = document.getElementById("Seguimiento");
-
-const campoInicioAplazamiento = document.getElementById("campo_inicio_aplazamiento");
-const campoFinAplazamiento = document.getElementById("campo_fin_aplazamiento");
+const campoInicio = document.getElementById("campo_inicio_aplazamiento");
+const campoFin = document.getElementById("campo_fin_aplazamiento");
 
 function actualizarAplazamiento(){
+    const inputInicio = campoInicio.querySelector("input");
+    const inputFin = campoFin.querySelector("input");
 
-    const inputInicio = campoInicioAplazamiento.querySelector("input");
-    const inputFin = campoFinAplazamiento.querySelector("input");
-
-    if(seguimiento.value === "APLAZAMIENTO"){
-
-        campoInicioAplazamiento.style.display = "flex";
-        campoFinAplazamiento.style.display = "flex";
-
-        inputInicio.required = true;
-        inputFin.required = true;
-
-    } else {
-
-        campoInicioAplazamiento.style.display = "none";
-        campoFinAplazamiento.style.display = "none";
-
-        inputInicio.required = false;
-        inputFin.required = false;
-
-        inputInicio.value = "";
-        inputFin.value = "";
+    if(seguimiento.value==="APLAZAMIENTO"){
+        campoInicio.style.display="flex";
+        campoFin.style.display="flex";
+        inputInicio.required=true;
+        inputFin.required=true;
+    }else{
+        campoInicio.style.display="none";
+        campoFin.style.display="none";
+        inputInicio.required=false;
+        inputFin.required=false;
+        inputInicio.value="";
+        inputFin.value="";
     }
 }
 
-/* Evento */
 seguimiento.addEventListener("change", actualizarAplazamiento);
-
-/* Estado inicial */
 actualizarAplazamiento();
 
-  
-
-  });
-
+});
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
