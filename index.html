@@ -492,102 +492,170 @@ target="hidden_iframe">
 <script>
 document.addEventListener("DOMContentLoaded", function(){
 
-/* =====================================================
-   ENVÍO CORRECTO A GOOGLE FORMS (ARREGLADO)
-=====================================================*/
+/* ===============================
+   MOTIVOS EPA
+=================================*/
+const causaRaiz = document.getElementById("Cauzaraiz");
+const Motivocausaraiz = document.getElementById("Motivocausaraiz");
 
-const form = document.getElementById("googleForm");
-const mensaje = document.getElementById("mensaje");
-const tipoMuestra = document.getElementById("Tipodemuestra");
+const motivosCliente = [
+"CLIENTE CUELGA SIN FINALIZAR PROCESO",
+"NO HAY MOTIVO DE MALA CALIFICACION",
+"NO GESTIONABLE (TERCERO)",
+"NO GESTIONABLE (NO BRINDA DATOS)",
+"CLIENTE SOLICITA AJUSTE QUE NO APLICA",
+"NO CONFORME POR COBROS DE MORA"
+];
 
-form.addEventListener("submit", function(e){
+const motivosAsesor = [
+"COMPORTAMIENTO / EVASIÓN DEL PROCESO",
+"HABILIDAD / MANEJO DE CLIENTE CRÍTICO",
+"CONOCIMIENTO - PRODUCTOS",
+"HABILIDAD - ASESOR NO TIENE SENTIDO DE URGENCIA",
+"HABILIDAD - ASESOR CARECE DE EMPATÍA",
+"HABILIDAD / MANEJO DE APLICATIVOS",
+"CONOCIMIENTO / APLICATIVOS DISPONIBLES",
+"CONOCIMIENTO / APLICATIVOS DE RETENCIÓN"
+];
 
-    // Validación múltiple obligatoria
-    if(tipoMuestra.selectedOptions.length === 0){
-        e.preventDefault();
-        alert("Por favor seleccione al menos un Tipo de Muestra.");
-        return;
+const motivosVmo = [
+"SE CAE LLAMADA ABRUPTAMENTE",
+"APLICATIVOS DEGRADADO (PROTOCOLO)",
+"NO APARECE LLAMADA EN EL GRABADOR",
+"CAÍDA DE SISTEMA",
+"LLAMADA SIN AUDIO",
+"CLIENTE DISCONFORME CON PROCESO DE BIOMETRIA",
+"CLIENTE DISCONFORME CON OFERTA DISPONIBLE EN SISTEMA",
+"LA SOLUCIÓN DEPENDE DE OTRA ÁREA (SUCURSAL PRESENCIAL)",
+"LA SOLUCIÓN DEPENDE DE OTRA ÁREA (SOPORTE TÉCNICO)",
+"LA SOLUCIÓN DEPENDE DE OTRA ÁREA (ACTIVACIÓN DE PLATAFORMAS)",
+"DISCONFORMIDAD POR ENTREGA DE EQUIPOS EN SUCURSAL"
+];
+
+const motivosExperiencia = [
+"EJECUTIVO DE OTRO ALIADO NO ATIENDE SOLICITUD DEL CLIENTE",
+"EJECUTIVO DE OTRO ALIADO ENTREGA INFORMACION ERRADA AL CLIENTE",
+"ASESOR DE SUCURSAL NO ATIENDE LA SOLICITUD DEL CLIENTE",
+"CLIENTE INCONFORME POR TIEMPO DE ESPERA PARA LLEGAR A RETENCIÓN",
+"MALA ATENCION DE EJECUTIVO ANTERIOR (OTRO ALIADO)",
+"EJECUTIVO ALIADO ENTREGA INFORMACION ERRADA AL CLIENTE",
+"NO APLICA TRANSFERENCIA A RETENCIÓN",
+"CLIENTE DISCONFORME POR OFERTA NO APLICADA"
+];
+
+function cargarMotivos(lista){
+    Motivocausaraiz.innerHTML='<option value="">Selecciona</option>';
+    lista.forEach(m=>Motivocausaraiz.add(new Option(m,m)));
+}
+
+causaRaiz.addEventListener("change",function(){
+    switch(this.value){
+        case "ASESOR": cargarMotivos(motivosAsesor); break;
+        case "CLIENTE": cargarMotivos(motivosCliente); break;
+        case "VMO": cargarMotivos(motivosVmo); break;
+        case "EXPERIENCIA ANTERIOR": cargarMotivos(motivosExperiencia); break;
+        default: Motivocausaraiz.innerHTML='<option value="">Selecciona</option>';
     }
-
-    // 🔥 NO usamos preventDefault aquí
-    mensaje.innerText = "✅ Enviando registro...";
-
-setTimeout(()=>{
-    mensaje.innerText = "✅ Registro enviado correctamente";
-    form.reset();
-    actualizarCampos();
-    actualizarAplazamiento();
-},1500);
-
-
 });
 
+/* ===============================
+   MOTIVO DE BAJA
+=================================*/
+const servicio = document.getElementById("Servicio");
+const motivoRegistrado = document.getElementById("motivoRegistrado");
+const motivoReal = document.getElementById("motivoReal");
 
-/* =====================================================
+const motivosFija = ["COMPETENCIA CON MEJOR PRECIO","FALLA MASIVA","FALLECIMIENTO","MALA EXPERIENCIA TÉCNICA","NO ENTREGA INFORMACIÓN","NO HAY FACTIBILIDAD","NO RECONOCE VENTA","OFERTA NO APLICADA","RECLAMO AJUSTE IPC","RECLAMOS FACTURACIÓN","RENOVACIÓN DESCUENTO","SITUACION ECONÓMICA","SUSTITUYE POR PRODUCTO MOVISTAR","TRASLADO","BAJA NO CURSADA","COBROS EN LA BOLETA","LLAMADA CORTA","LLAMADA NO SE ENCUENTRA EN VERINT","LLAMADA SIN ATENCIÓN"];
+
+const motivosMovil = ["CAMBIO A LA COMPETENCIA","CLIENTE CON DEUDA","MAL FUNCIONAMIENTO DEL PRODUCTO","MALA EXPERIENCIA EN LA VENTA / POSTVENTA","NECESITA REDUCIR GASTOS","NO RECONOCE LA VENTA","NO USA EL PRODUCTO","SUSTITUYE POR OTRO SERVICIO","VIAJE AL EXTRANJERO","NO APLICA","BAJA NO CURSADA","COBROS EN LA BOLETA","LLAMADA CORTA","LLAMADA NO SE ENCUENTRA EN VERINT","LLAMADA SIN ATENCIÓN"];
+
+function cargarMotivosBaja(lista){
+    motivoRegistrado.innerHTML='<option value="">Selecciona</option>';
+    motivoReal.innerHTML='<option value="">Selecciona</option>';
+    lista.forEach(m=>{
+        motivoRegistrado.add(new Option(m,m));
+        motivoReal.add(new Option(m,m));
+    });
+}
+
+servicio.addEventListener("change",function(){
+    if(this.value==="RETENCIONES FIJA"){
+        cargarMotivosBaja(motivosFija);
+    }else if(this.value==="RETENCIONES MOVIL" || this.value==="CONTIGO"){
+        cargarMotivosBaja(motivosMovil);
+    }else{
+        motivoRegistrado.innerHTML='<option value="">Selecciona</option>';
+        motivoReal.innerHTML='<option value="">Selecciona</option>';
+    }
+});
+
+/* ===============================
+   NO VENTA
+=================================*/
+const agenteOfrece = document.getElementById("Agenteofrece");
+const motivoNoVenta = document.getElementById("Noventa");
+
+const nvAsesor = ["ASESOR NO ABORDA","ASESOR SOLO INFORMA","ASESOR NO REBATE OBJECIONES","FALTA DE HABILIDAD BLANDA"];
+const nvCliente = ["CLIENTE CRÍTICO / NO DESEA ESCUCHAR OFERTAS","CLIENTE CORTA LLAMADA","YA TIENE LOS PRODUCTOS","NO DESEA NADA CON MOVISTAR","MALA EXPERIENCIA CON LOS SERVICIOS"];
+const nvVmo = ["SIN SOLUCIÓN DE AVERÍAS","COBROS ALTOS EN SU SERVICIO ACTUAL","DEMORA EN LAS INSTALACIONES","CAÍDA DE SISTEMA","OFERTA NO ES LO QUE ESPERABA","CLIENTE SUSPENDIDO"];
+const nvExp = ["TRANSFERENCIA INCORRECTA A NUESTRA ÁREA","MALA EXPERIENCIA CON LAS ATENCIONES ANTERIORES","INFORMACIÓN INCORRECTA EN ATENCIÓN ANTERIOR","DISCONFORME CON EL TIEMPO DE ESPERA EN TRANSFERENCIAS"];
+
+function cargarNoVenta(lista){
+    motivoNoVenta.innerHTML='<option value="">Selecciona</option>';
+    lista.forEach(m=>motivoNoVenta.add(new Option(m,m)));
+}
+
+function validarNoVenta(){
+    if(agenteOfrece.value==="NO" || agenteOfrece.value==="SI - SOLO INFORMATIVO"){
+        switch(causaRaiz.value){
+            case "ASESOR": cargarNoVenta(nvAsesor); break;
+            case "CLIENTE": cargarNoVenta(nvCliente); break;
+            case "VMO": cargarNoVenta(nvVmo); break;
+            case "EXPERIENCIA ANTERIOR": cargarNoVenta(nvExp); break;
+            default: motivoNoVenta.innerHTML='<option value="">Selecciona</option>';
+        }
+    }else{
+        motivoNoVenta.innerHTML='<option value="">Selecciona</option>';
+    }
+}
+
+agenteOfrece.addEventListener("change", validarNoVenta);
+causaRaiz.addEventListener("change", validarNoVenta);
+
+/* ===============================
    CONDICIONAL TIPO DE MUESTRA
-=====================================================*/
+=================================*/
+const tipoMuestra = document.getElementById("Tipodemuestra");
 
-const camposEPA = [
-"801462156","775761170","1707404081",
-"1986049857","435072420","1335755996",
-"249344188","1970751650","1722660845",
-"540982508","1574773486"
-];
-
-const camposEFECTIVIDAD = [
-"1723677195","229089857",
-"1986049857","435072420","1335755996",
-"1131024963",
-"249344188","1970751650","1722660845",
-"540982508","1574773486"
-];
-
-const camposCROSS = [
-"1954737468","2024872077","64049186",
-"932601302","698375446","1271045405",
-"1766526396",
-"1986049857","435072420","1335755996",
-"249344188","1970751650","1722660845",
-"540982508","1574773486"
-];
+const camposEPA = ["801462156","775761170","1707404081","1986049857","435072420","1335755996","249344188","1970751650","1722660845","540982508","1574773486"];
+const camposEFECTIVIDAD = ["1723677195","229089857","1986049857","435072420","1335755996","1131024963","249344188","1970751650","1722660845","540982508","1574773486"];
+const camposCROSS = ["1954737468","2024872077","64049186","932601302","698375446","1271045405","1766526396","1986049857","435072420","1335755996","249344188","1970751650","1722660845","540982508","1574773486"];
 
 function ocultarTodos(){
     const todos = new Set([...camposEPA,...camposEFECTIVIDAD,...camposCROSS]);
     todos.forEach(id=>{
         const campo = document.querySelector(`[name="entry.${id}"]`);
         if(campo){
-            const contenedor = campo.closest(".campo");
-            contenedor.style.display="none";
-            campo.required = false;
+            campo.closest(".campo").style.display="none";
+            campo.required=false;
         }
     });
 }
 
 function actualizarCampos(){
-
     ocultarTodos();
+    const seleccionados = Array.from(tipoMuestra.selectedOptions).map(op=>op.value);
+    let mostrar = new Set();
 
-    const seleccionados = Array.from(tipoMuestra.selectedOptions)
-                                .map(op => op.value);
+    if(seleccionados.includes("EPA")) camposEPA.forEach(c=>mostrar.add(c));
+    if(seleccionados.includes("EFECTIVIDAD")) camposEFECTIVIDAD.forEach(c=>mostrar.add(c));
+    if(seleccionados.includes("CROSS")) camposCROSS.forEach(c=>mostrar.add(c));
 
-    let camposAMostrar = new Set();
-
-    if(seleccionados.includes("EPA")){
-        camposEPA.forEach(c=>camposAMostrar.add(c));
-    }
-    if(seleccionados.includes("EFECTIVIDAD")){
-        camposEFECTIVIDAD.forEach(c=>camposAMostrar.add(c));
-    }
-    if(seleccionados.includes("CROSS")){
-        camposCROSS.forEach(c=>camposAMostrar.add(c));
-    }
-
-    camposAMostrar.forEach(id=>{
+    mostrar.forEach(id=>{
         const campo = document.querySelector(`[name="entry.${id}"]`);
         if(campo){
-            const contenedor = campo.closest(".campo");
-            contenedor.style.display="flex";
-            campo.required = true;
+            campo.closest(".campo").style.display="flex";
+            campo.required=true;
         }
     });
 }
@@ -596,30 +664,27 @@ tipoMuestra.addEventListener("change", actualizarCampos);
 ocultarTodos();
 actualizarCampos();
 
-
-/* =====================================================
-   CONDICIONAL APLAZAMIENTO
-=====================================================*/
-
+/* ===============================
+   APLAZAMIENTO
+=================================*/
 const seguimiento = document.getElementById("Seguimiento");
-const campoInicio = document.getElementById("campo_inicio_aplazamiento");
-const campoFin = document.getElementById("campo_fin_aplazamiento");
+const campoInicioAplazamiento = document.getElementById("campo_inicio_aplazamiento");
+const campoFinAplazamiento = document.getElementById("campo_fin_aplazamiento");
 
 function actualizarAplazamiento(){
+    const inputInicio = campoInicioAplazamiento.querySelector("input");
+    const inputFin = campoFinAplazamiento.querySelector("input");
 
-    const inputInicio = campoInicio.querySelector("input");
-    const inputFin = campoFin.querySelector("input");
-
-    if(seguimiento.value === "APLAZAMIENTO"){
-        campoInicio.style.display="flex";
-        campoFin.style.display="flex";
-        inputInicio.required = true;
-        inputFin.required = true;
+    if(seguimiento.value==="APLAZAMIENTO"){
+        campoInicioAplazamiento.style.display="flex";
+        campoFinAplazamiento.style.display="flex";
+        inputInicio.required=true;
+        inputFin.required=true;
     }else{
-        campoInicio.style.display="none";
-        campoFin.style.display="none";
-        inputInicio.required = false;
-        inputFin.required = false;
+        campoInicioAplazamiento.style.display="none";
+        campoFinAplazamiento.style.display="none";
+        inputInicio.required=false;
+        inputFin.required=false;
         inputInicio.value="";
         inputFin.value="";
     }
@@ -628,8 +693,26 @@ function actualizarAplazamiento(){
 seguimiento.addEventListener("change", actualizarAplazamiento);
 actualizarAplazamiento();
 
+/* ===============================
+   ENVIO
+=================================*/
+const form = document.getElementById("googleForm");
+const mensaje = document.getElementById("mensaje");
+
+form.addEventListener("submit", function(){
+    mensaje.innerText="✅ Enviando registro...";
+    setTimeout(()=>{
+        mensaje.innerText="✅ Registro enviado correctamente";
+        form.reset();
+        actualizarCampos();
+        actualizarAplazamiento();
+    },1500);
+});
+
 });
 </script>
 
+
 </body>
 </html>
+
