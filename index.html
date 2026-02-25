@@ -692,16 +692,27 @@ const form = document.getElementById("googleForm");
 const mensaje = document.getElementById("mensaje");
 
 form.addEventListener("submit", async function(e){
-    e.preventDefault(); // evita el envío clásico
+    e.preventDefault();
     mensaje.innerText = "⏳ Enviando registro...";
-    const formData = new FormData(form);
+    const seleccionados = Array.from(tipoMuestra.selectedOptions).map(op => op.value);
+    if(seleccionados.length === 0){
+        mensaje.innerText = "❌ Debes seleccionar al menos un Tipo de Muestra";        return;
+    }
     try {
-        await fetch("https://docs.google.com/forms/d/e/1FAIpQLSctbWuMZCW2cFyFqoQSs05BYTOqCM-Va6iUdTcvOWWwC2P6dA/formResponse", {
-            method: "POST",
-            mode: "no-cors",
-            body: formData
-        });
-        mensaje.innerText = "✅ Registro enviado correctamente";
+        for (let tipo of seleccionados) {
+            // Creamos un nuevo FormData por cada tipo
+            const formData = new FormData(form);
+            // Eliminamos los múltiples valores
+            formData.delete("entry.1613585774");
+            // Agregamos solo uno
+            formData.append("entry.1613585774", tipo);
+            await fetch("https://docs.google.com/forms/d/e/1FAIpQLSctbWuMZCW2cFyFqoQSs05BYTOqCM-Va6iUdTcvOWWwC2P6dA/formResponse", {
+                method: "POST",
+                mode: "no-cors",
+                body: formData
+            });
+        }
+        mensaje.innerText = "✅ Registro(s) enviado(s) correctamente";
         form.reset();
         actualizarCampos();
         actualizarAplazamiento();
@@ -716,6 +727,7 @@ form.addEventListener("submit", async function(e){
 
 </body>
 </html>
+
 
 
 
