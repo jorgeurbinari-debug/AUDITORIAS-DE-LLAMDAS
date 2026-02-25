@@ -2,87 +2,145 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Formulario Google - Auditorías</title>
+<title>Formulario Google</title>
 
 <style>
-    /* CSS Unificado y Limpio */
-    body {
-        font-family: 'Segoe UI', Arial, sans-serif;
-        background: linear-gradient(135deg, #ece9e6, #ffffff);
-        margin: 0;
-        padding: 30px;
-    }
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  background:#f4f6f8;
+  margin:0;
+  padding:30px;
+}
 
-    h2 { text-align: center; color: #333; margin-bottom: 25px; }
+h2{ text-align:center; margin-bottom:25px; }
 
-    form {
-        max-width: 1200px;
-        margin: auto;
-        background: white;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 12px 24px rgba(0,0,0,0.15);
-        border: 1px solid #ddd;
-    }
+form{
+  max-width:1200px;
+  margin:auto;
+  background:white;
+  padding:30px;
+  border-radius:10px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
 
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
-    }
+.grid{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:20px;
+}
 
-    .campo { display: flex; flex-direction: column; }
+.campo{ display:flex; flex-direction:column; }
 
-    .campo label {
-        font-size: 13px;
-        font-weight: 600;
-        margin-bottom: 6px;
-        color: #444;
-    }
+.campo label{
+  font-size:13px;
+  font-weight:bold;
+  margin-bottom:6px;
+}
 
-    .campo input, .campo select, .campo textarea {
-        padding: 10px;
-        border-radius: 6px;
-        border: 1px solid #bbb;
-        font-size: 14px;
-        width: 100%;
-        box-sizing: border-box;
-    }
+.campo input,
+.campo select,
+.campo textarea{
+  padding:10px;
+  border-radius:6px;
+  border:1px solid #ccc;
+  font-size:14px;
+}
 
-    input:focus, select:focus, textarea:focus {
-        border-color: #0066ff;
-        box-shadow: 0 0 6px rgba(0,102,255,0.4);
-        outline: none;
-    }
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus{
+  border-color:#007bff;
+  outline:none;
+  box-shadow:0 0 0 2px rgba(0,123,255,0.2);
+}
 
-    textarea { min-height: 80px; resize: vertical; }
+textarea{
+  min-height:60px;
+  resize:vertical;
+}
 
-    button {
-        margin-top: 25px;
-        padding: 15px;
-        width: 100%;
-        border: none;
-        border-radius: 6px;
-        background: linear-gradient(45deg, #0066ff, #0044cc);
-        color: white;
-        font-size: 16px;
-        font-weight: 700;
-        cursor: pointer;
-        transition: transform 0.1s;
-    }
+button{
+  margin-top:25px;
+  padding:12px;
+  width:100%;
+  border:none;
+  border-radius:6px;
+  background:#007bff;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+button:hover{ background:#0056b3; }
 
-    button:active { transform: scale(0.98); }
+.mensaje{
+  text-align:center;
+  margin-top:15px;
+  color:green;
+  font-weight:bold;
+}
 
-    .mensaje {
-        text-align: center;
-        margin-top: 15px;
-        color: #28a745;
-        font-weight: bold;
-        min-height: 20px;
-    }
 
-    @media (max-width: 1024px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+*,
+*::before,
+*::after{
+  box-sizing: border-box;
+}
+
+.campo input,
+.campo select,
+.campo textarea{
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 1024px){
+  .grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px){
+  .grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+  body {
+  background: linear-gradient(135deg, #ece9e6, #ffffff);
+}
+
+form {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  border: 1px solid #ddd;
+}
+
+button {
+  background: linear-gradient(45deg, #0066ff, #0044cc);
+  font-weight: 700;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(45deg, #0052cc, #003399);
+}
+
+.campo label {
+  color: #333;
+  font-weight: 600;
+}
+
+input, select, textarea {
+  border: 1px solid #bbb;
+  transition: border-color 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #0066ff;
+  box-shadow: 0 0 6px rgba(0, 102, 255, 0.5);
+}
+  
+
+  
 </style>
 </head>
 
@@ -90,329 +148,752 @@
 
 <h2>REGISTRO DE AUDITORIAS RETENCIONES</h2>
 
-<form id="googleForm" 
-      action="https://docs.google.com/forms/d/e/1FAIpQLSctbWuMZCW2cFyFqoQSs05BYTOqCM-Va6iUdTcvOWWwC2P6dA/formResponse" 
-      method="POST" 
-      target="hidden_iframe">
+<form id="googleForm"
+action="https://docs.google.com/forms/d/e/1FAIpQLSctbWuMZCW2cFyFqoQSs05BYTOqCM-Va6iUdTcvOWWwC2P6dA/formResponse"
+method="POST"
+target="hidden_iframe">
 
-    <div class="grid">
-        <div class="campo">
-            <label>Servicio</label>
-            <select id="Servicio" name="entry.1037946129" required>
-                <option value="">Selecciona</option>
-                <option value="RETENCIONES FIJA">RETENCIONES FIJA</option>
-                <option value="RETENCIONES MOVIL">RETENCIONES MOVIL</option>
-                <option value="CONTIGO">CONTIGO</option>
-            </select>
-        </div>
+<iframe name="hidden_iframe" style="display:none;"></iframe>
 
-        <div class="campo">
-            <label>Lider *</label>
-            <select id="Lider" name="entry.531191119" required>
-                <option value="">Selecciona</option>
-                <option value="COELLO COLICHON ALEJANDRINA MARTHA">COELLO COLICHON ALEJANDRINA MARTHA</option>
-                <option value="LLATAS CAICEDO JENERY CHYAREN">LLATAS CAICEDO JENERY CHYAREN</option>
-                <option value="MAZA PICON SERGIO LUIS">MAZA PICON SERGIO LUIS</option>
-                <option value="MUNDACA HUALCA VERONICA GUADALUPE">MUNDACA HUALCA VERONICA GUADALUPE</option>
-                <option value="URBINA RIVERA JORGE DANIEL">URBINA RIVERA JORGE DANIEL</option>
-            </select>
-        </div>
+<div class="grid">
 
-        <div class="campo">
-            <label>Representante</label>
-            <select name="entry.480035690" required>
-                <option value="">Selecciona Representante</option>
-                <option value="AGUILAR VARGAS URSULA NOEMI">AGUILAR VARGAS URSULA NOEMI</option>
-                <option value="ALTAMIRANO MEGO MARIO SERGIO">ALTAMIRANO MEGO MARIO SERGIO</option>
-                <option value="BECERRA GOMEZ PACO JHORDAN">BECERRA GOMEZ PACO JHORDAN</option>
-                <option value="ZAPATA BENAVIDES DELIA LISSETH">ZAPATA BENAVIDES DELIA LISSETH</option>
-                </select>
-        </div>
+<!-- 🔹 MANTENGO SOLO PARTE INICIAL COMO EJEMPLO (EL RESTO DE TUS CAMPOS SIGUEN IGUAL) -->
 
-        <div class="campo">
-            <label>Suscripcion</label>
-            <input name="entry.724552463" required placeholder="Número de suscripción">
-        </div>
+<div class="campo">
+<label>Servicio</label>
+<select id="Servicio" name="entry.1037946129" required>
+<option value="">Selecciona</option>
+<option value="RETENCIONES FIJA">RETENCIONES FIJA</option>
+<option value="RETENCIONES MOVIL">RETENCIONES MOVIL</option>
+<option value="CONTIGO">CONTIGO</option>
+</select>
+</div>
 
-        <div class="campo">
-            <label>Fecha</label>
-            <input type="date" name="entry.568992954" required>
-        </div>
+<div class="campo">
+<label>Lider *</label>
+<select id="Lider" name="entry.531191119" required>
+<option value="">Selecciona</option>
+<option value="COELLO COLICHON ALEJANDRINA MARTHA">COELLO COLICHON ALEJANDRINA MARTHA</option>
+<option value="LLATAS CAICEDO JENERY CHYAREN">LLATAS CAICEDO JENERY CHYAREN</option>
+<option value="MAZA PICON SERGIO LUIS">MAZA PICON SERGIO LUIS</option>
+<option value="MUNDACA HUALCA VERONICA GUADALUPE">MUNDACA HUALCA VERONICA GUADALUPE</option>
+<option value="URBINA RIVERA JORGE DANIEL">URBINA RIVERA JORGE DANIEL</option>
+</select>
+</div>
 
-        <div class="campo">
-            <label>Caso</label>
-            <input name="entry.1041345748" required>
-        </div>
+<div class="campo">
+<label>Representante</label>
+<select name="entry.480035690" required>
+<option value="">Selecciona Representante</option>
+    <option value="AGUILAR VARGAS URSULA NOEMI">AGUILAR VARGAS URSULA NOEMI</option>
+    <option value="ALTAMIRANO MEGO MARIO SERGIO">ALTAMIRANO MEGO MARIO SERGIO</option>
+    <option value="ARBOLEDA SERRATO MEDALITH DEL ROCIO">ARBOLEDA SERRATO MEDALITH DEL ROCIO</option>
+    <option value="BALAREZO CASTILLO KEYLA KATHERINE">BALAREZO CASTILLO KEYLA KATHERINE</option>
+    <option value="BALLENA FERRE SARA FABIOLA">BALLENA FERRE SARA FABIOLA</option>
+    <option value="BECERRA GOMEZ PACO JHORDAN">BECERRA GOMEZ PACO JHORDAN</option>
+    <option value="BERRU MENDOZA MARIA ELIZABETH">BERRU MENDOZA MARIA ELIZABETH</option>
+    <option value="CARRANZA CHAVESTA JOSE ROMY">CARRANZA CHAVESTA JOSE ROMY</option>
+    <option value="CHUNG ESPEJO JUAN FRANCISCO">CHUNG ESPEJO JUAN FRANCISCO</option>
+    <option value="CHUNGA PIZARRO MARGARETH ESTEFANI">CHUNGA PIZARRO MARGARETH ESTEFANI</option>
+    <option value="CRISANTO GARRIDO DEYSI MARIBEL">CRISANTO GARRIDO DEYSI MARIBEL</option>
+    <option value="CRISANTO LARTIGA MARIA VANESSA">CRISANTO LARTIGA MARIA VANESSA</option>
+    <option value="DELGADO FARRO MITZY YOSHELY">DELGADO FARRO MITZY YOSHELY</option>
+    <option value="DIAZ ACUÑA PAOLA STEFANIE">DIAZ ACUÑA PAOLA STEFANIE</option>
+    <option value="DIAZ QUIROZ JOSE GALENO">DIAZ QUIROZ JOSE GALENO</option>
+    <option value="ESPINOZA SILVA KIMBERLY YAMILE">ESPINOZA SILVA KIMBERLY YAMILE</option>
+    <option value="FLORES NAVAL JUANA DEL PILAR">FLORES NAVAL JUANA DEL PILAR</option>
+    <option value="GORDILLO YAIPEN EDITH MADELEI">GORDILLO YAIPEN EDITH MADELEI</option>
+    <option value="GONZALES SAENZ EDGARDO DAVID">GONZALES SAENZ EDGARDO DAVID</option>
+    <option value="GUTIERREZ MENDOZA TERESA OCDULIA">GUTIERREZ MENDOZA TERESA OCDULIA</option>
+    <option value="HORNA CARRERO LILIANA">HORNA CARRERO LILIANA</option>
+    <option value="LARIOS FIESTAS YESENIA PAOLA">LARIOS FIESTAS YESENIA PAOLA</option>
+    <option value="LUCERO COTRINA JAIME ENRIQUE">LUCERO COTRINA JAIME ENRIQUE</option>
+    <option value="LUNA TERRONES MIRIAN ROCIO">LUNA TERRONES MIRIAN ROCIO</option>
+    <option value="MANAYAY ABAZALO BEVERLY BEATRIZ">MANAYAY ABAZALO BEVERLY BEATRIZ</option>
+    <option value="MASABEL RIVAS GUILLERMINA DEL ROSARIO">MASABEL RIVAS GUILLERMINA DEL ROSARIO</option>
+    <option value="MELENDEZ DEL CASTILLO FERNANDO GABRIEL">MELENDEZ DEL CASTILLO FERNANDO GABRIEL</option>
+    <option value="ORTIZ SALAZAR ANABELEN">ORTIZ SALAZAR ANABELEN</option>
+    <option value="PEREZ BANCES EDUARDO XKANLEONX ROLANDO">PEREZ BANCES EDUARDO XKANLEONX ROLANDO</option>
+    <option value="PEREZ GONZALES KATHERINE YESSENIA">PEREZ GONZALES KATHERINE YESSENIA</option>
+    <option value="RIOJAS TERRONES ANGELLA LIZETH">RIOJAS TERRONES ANGELLA LIZETH</option>
+    <option value="RIVERA MERA JESSICA KARINA">RIVERA MERA JESSICA KARINA</option>
+    <option value="SALAZAR VASQUEZ ANTONI MIGUEL">SALAZAR VASQUEZ ANTONI MIGUEL</option>
+    <option value="SANCHEZ VILLAFRANQUI STEPHANO MIGUEL">SANCHEZ VILLAFRANQUI STEPHANO MIGUEL</option>
+    <option value="SIRLUPU YOVERA AMALIA MARGOT">SIRLUPU YOVERA AMALIA MARGOT</option>
+    <option value="SOTELO CHUMBE ABENCIA">SOTELO CHUMBE ABENCIA</option>
+    <option value="TORRES OLANO PIERO ALEJANDRO">TORRES OLANO PIERO ALEJANDRO</option>
+    <option value="TRIGOSO AYALA LISET MABEL">TRIGOSO AYALA LISET MABEL</option>
+    <option value="UGAZ SAAVEDRA TIFFANY BRICET">UGAZ SAAVEDRA TIFFANY BRICET</option>
+    <option value="VALDERRAMA CAJO FABIOLA KATHERINE MILAGROS DEL SOL">VALDERRAMA CAJO FABIOLA KATHERINE MILAGROS DEL SOL</option>
+    <option value="VELASQUEZ SENMACHE MIGUEL ANGEL">VELASQUEZ SENMACHE MIGUEL ANGEL</option>
+    <option value="VELASQUEZ FRIAS LIZBETH KARELLY">VELASQUEZ FRIAS LIZBETH KARELLY</option>
+    <option value="VELIZ CHOQUE JANETH JHOSELIE">VELIZ CHOQUE JANETH JHOSELIE</option>
+    <option value="ÑIQUEN ARROYO KATTIA LISET">ÑIQUEN ARROYO KATTIA LISET</option>
+    <option value="SANTISTEVAN DE LOS SANTOS DAHYANA MAGALI">SANTISTEVAN DE LOS SANTOS DAHYANA MAGALI</option>
+    <option value="HUERTAS CORREA MARIA DE LOS ANGELES">HUERTAS CORREA MARIA DE LOS ANGELES</option>
+    <option value="SOTO CORREA SANDRA ELIZABETH">SOTO CORREA SANDRA ELIZABETH</option>
+    <option value="ZAPATA BENAVIDES DELIA LISSETH">ZAPATA BENAVIDES DELIA LISSETH</option>
+  
+</select>
+</div>
 
-        <div class="campo">
-            <label>Id Conmutador</label>
-            <input name="entry.1553593605" required>
-        </div>
+<div class="campo">
+<label>Suscripcion</label>
+<input name="entry.724552463" required>
+</div>
 
-        <div class="campo">
-            <label>Id Conmutador2</label>
-            <input name="entry.1144665915" required>
-        </div>
+<div class="campo">
+<label>Fecha</label>
+<input type="date" 
+       name="entry.568992954" 
+       required>
+</div>
 
-        <div class="campo">
-            <label>Tipologia</label>
-            <select id="Tipologia" name="entry.778134447" required>
-                <option value="">Selecciona</option>
-                <option value="SOLICTUD DE BAJA">SOLICTUD DE BAJA</option>
-                <option value="RECLAMO">RECLAMO</option>
-                <option value="CONSULTA">CONSULTA</option>
-                <option value="INCIDENCIA">INCIDENCIA</option>
-            </select>
-        </div>
+<div class="campo">
+<label>Caso</label>
+<input name="entry.1041345748" required>
+</div>  
 
-        <div class="campo">
-            <label>Motivo de Baja Registrado</label>
-            <select id="motivoRegistrado" name="entry.462623756" required>
-                <option value="">Selecciona Servicio primero</option>
-            </select>
-        </div>
+<div class="campo">
+<label>Id Conmutador</label>
+<input name="entry.1553593605" required>
+</div>   
+  
+<div class="campo">
+<label>Id Conmutador2</label>
+<input name="entry.1144665915" required>
+</div>   
 
-        <div class="campo">
-            <label>Motivo de Baja Real</label>
-            <select id="motivoReal" name="entry.1173442708" required>
-                <option value="">Selecciona Servicio primero</option>
-            </select>
-        </div>
+<div class="campo">
+<label>Tipologia</label>
+<select id="Tipologia" name="entry.778134447" required>
+<option value="">Selecciona</option>
+<option value="SOLICTUD DE BAJA">SOLICTUD DE BAJA</option>
+<option value="RECLAMO">RECLAMO</option>
+<option value="CONSULTA">CONSULTA</option>
+<option value="INCIDENCIA">INCIDENCIA</option>
 
-        <div class="campo">
-            <label>Resultado</label>
-            <select id="Resultado" name="entry.459989845" required>
-                <option value="">Selecciona</option>
-                <option value="CONTENIDO">CONTENIDO</option>
-                <option value="NO CONTENIDO">NO CONTENIDO</option>
-                <option value="NO APLICA">NO APLICA</option>
-            </select>
-        </div>
+</select>
+</div>
+  
+<div class="campo">
+<label>Motivo de Baja Registrado</label>
+<select id="motivoRegistrado" name="entry.462623756" required>
+<option value="">Selecciona</option>
+</select>
+</div>
 
-        <div class="campo">
-            <label>Tipo de Muestra</label>
-            <select id="Tipodemuestra" name="entry.1613585774" required>
-                <option value="">Selecciona</option>
-                <option value="EPA">EPA</option>
-                <option value="EFECTIVIDAD">EFECTIVIDAD</option>
-                <option value="CROSS">CROSS</option>
-            </select>
-        </div>
+<div class="campo">
+<label>Motivo de Baja Real</label>
+<select id="motivoReal" name="entry.1173442708" required>
+<option value="">Selecciona</option>
+</select>
+</div>
 
-        <div class="campo" data-seccion="EPA">
-            <label>Causa Raiz</label>
-            <select id="Cauzaraiz" name="entry.801462156">
-                <option value="">Selecciona</option>
-                <option value="ASESOR">ASESOR</option>
-                <option value="CLIENTE">CLIENTE</option>
-                <option value="VMO">VMO</option>
-                <option value="EXPERIENCIA ANTERIOR">EXPERIENCIA ANTERIOR</option>
-            </select>
-        </div>
+<div class="campo">
+<label>Resultado</label>
+<select id="Resultado" name="entry.459989845" required>
+<option value="">Selecciona</option>
+<option value="CONTENIDO">CONTENIDO</option>
+<option value="NO CONTENIDO">NO CONTENIDO</option>
+<option value="NO APLICA">NO APLICA</option>
 
-        <div class="campo" data-seccion="EPA">
-            <label>Motivo de Causa Raiz</label>
-            <select id="Motivocausaraiz" name="entry.775761170">
-                <option value="">Selecciona Causa Raiz primero</option>
-            </select>
-        </div>
+</select>
+</div>
 
-        <div class="campo" data-seccion="EPA">
-            <label>Aplica Speech EPA</label>
-            <select id="SpeechEpa" name="entry.1707404081">
-                <option value="">Selecciona</option>
-                <option value="BRINDA CORRECTAMENTE">BRINDA CORRECTAMENTE</option>
-                <option value="NO BRINDA SPEECH">NO BRINDA SPEECH</option>
-                <option value="BRINDA DE MANERA INCORRECTA/INCOMPLETA">BRINDA DE MANERA INCORRECTA/INCOMPLETA</option>
-                <option value="NO APLICA">NO APLICA</option>
-            </select>
-        </div>
+<div class="campo">
+<label>Tipo de Muestra</label>
+<select id="Tipodemuestra" 
+        name="entry.1613585774" 
+        multiple 
+        required>
+<option value="EPA">EPA</option>
+<option value="EFECTIVIDAD">EFECTIVIDAD</option>
+<option value="CROSS">CROSS</option>
+</select>
+</div>
 
-        <div class="campo" data-seccion="EFECTIVIDAD">
-            <label>Ofrece Escalonado</label>
-            <select id="Escalonado" name="entry.1723677195">
-                <option value="">Selecciona</option>
-                <option value="SI">SI</option>
-                <option value="NO">NO</option>
-                <option value="NO APLICA">NO APLICA</option>
-            </select>
-        </div>
+<div class="campo">
+<label>Causa Raiz</label>
+<select id="Cauzaraiz" name="entry.801462156" required>
+<option value="">Selecciona</option>
+<option value="ASESOR">ASESOR</option>
+<option value="CLIENTE">CLIENTE</option>
+<option value="VMO">VMO</option>
+<option value="EXPERIENCIA ANTERIOR">EXPERIENCIA ANTERIOR</option>
+</select>
+</div>
 
-        <div class="campo" data-seccion="EFECTIVIDAD">
-            <label>Motivo de No Contencion</label>
-            <select id="Nocontencion" name="entry.229089857">
-                <option value="">Selecciona</option>
-                <option value="BAJA POR ALTA">BAJA POR ALTA</option>
-                <option value="FALLAS TECNICAS">FALLAS TECNICAS</option>
-                <option value="RESPONSABILIDAD ASESOR">RESPONSABILIDAD ASESOR</option>
-            </select>
-        </div>
+<div class="campo">
+<label>Motivo de Causa Raiz</label>
+<select id="Motivocausaraiz" name="entry.775761170" required>
+<option value="">Selecciona</option>
+</select>
+</div>
 
-        <div class="campo" data-seccion="EFECTIVIDAD">
-            <label>Descripción de No Contención</label>
-            <textarea id="descripcionNoContencion" name="entry.1131024963"></textarea>
-        </div>
+<div class="campo">
+<label>Aplica Speech EPA</label>
+<select id="SpeechEpa" name="entry.1707404081" required>
+<option value="">Selecciona</option>
+<option value="BRINDA CORRECTAMENTE">BRINDA CORRECTAMENTE</option>
+<option value="NO BRINDA SPEECH">NO BRINDA SPEECH</option>
+<option value="BRINDA DE MANERA INCORRECTA/INCOMPLETA">BRINDA DE MANERA INCORRECTA/INCOMPLETA</option>
+<option value="NO APLICA">NO APLICA</option>
+</select>
+</div>
+  
+<div class="campo">
+<label>Ofrece Escalonado</label>
+<select id="Escalonado" name="entry.1723677195" required>
+<option value="">Selecciona</option>
+<option value="SI">SI</option>
+<option value="NO">NO</option>
+<option value="NO APLICA">NO APLICA</option>
+</select>
+</div>
 
-        <div class="campo" data-seccion="CROSS">
-            <label>Hubo Solucion al Req.</label>
-            <select name="entry.1954737468">
-                <option value="">Selecciona</option>
-                <option value="SI">SI</option>
-                <option value="NO">NO</option>
-            </select>
-        </div>
+<div class="campo">
+<label>Motivo de No Contencion</label>
+<select id="Nocontencion" name="entry.229089857" required>
+<option value="">Selecciona</option>
+<option value="BAJA POR ALTA">BAJA POR ALTA</option>
+<option value="SIN FACTIBILIDAD">SIN FACTIBILIDAD</option>
+<option value="CLIENTE YA TIENE OTRAS LINEAS CON MOVISTAR">CLIENTE YA TIENE OTRAS LINEAS CON MOVISTAR</option>
+<option value="CLIENTE TIENE LINEA CON OTRO OPERADOR">CLIENTE TIENE LINEA CON OTRO OPERADOR</option>
+<option value="CLIENTE CESADO(RETIRADO)">CLIENTE CESADO(RETIRADO)</option>
+<option value="VIAJE AL EXTRANJERO SIN RETORNO">VIAJE AL EXTRANJERO SIN RETORNO</option>
+  <option value="FALLAS TECNICAS">FALLAS TECNICAS</option>
+<option value="RESPONSABILIDAD ASESOR">RESPONSABILIDAD ASESOR</option>
+</select>
+</div>
 
-        <div class="campo" data-seccion="CROSS">
-            <label>Agente Ofrece</label>
-            <select id="Agenteofrece" name="entry.64049186">
-                <option value="">Selecciona</option>
-                <option value="SI - CON INTENCION">SI - CON INTENCION</option>
-                <option value="SI - SOLO INFORMATIVO">SI - SOLO INFORMATIVO</option>
-                <option value="NO">NO</option>
-            </select>
-        </div>
+<div class="campo">
+<label>Oportunidad de Mejora</label>
+<select id="Mejora1" name="entry.1986049857" required>
+<option value="">Selecciona</option>
+<option value="TIEMPOS EN ESPERA">TIEMPOS EN ESPERA</option>
+<option value="HABILIDAD BLANDA">HABILIDAD BLANDA</option>
+<option value="RELLAMADO">RELLAMADO</option>
+<option value="EMPATÍA">EMPATÍA</option>
+<option value="INTENCIÓN DE CONTENCIÓN">INTENCIÓN DE CONTENCIÓN</option>
+<option value="CORTE RAC">CORTE RAC</option>
+<option value="REBATIMIENTO DE OBJECIONES">REBATIMIENTO DE OBJECIONES</option>
+<option value="NEGOCIACIÓN">NEGOCIACIÓN</option>
+<option value="HABILIDAD CON LOS APLICATIVOS (DEMORA EN IMPACTO)">HABILIDAD CON LOS APLICATIVOS (DEMORA EN IMPACTO)</option>
+<option value="CUMPLIMIENTO DE PROCESO">CUMPLIMIENTO DE PROCESO</option>
+</select>
+</div>
 
-        <div class="campo" data-seccion="CROSS">
-            <label>Motivo de no venta</label>
-            <select id="Noventa" name="entry.932601302">
-                <option value="">Selecciona</option>
-            </select>
-        </div>
+<div class="campo">
+<label>Oportunidad de Mejora 2</label>
+<select id="Mejora2" name="entry.435072420" required>
+<option value="">Selecciona</option>
+<option value="TIEMPOS EN ESPERA">TIEMPOS EN ESPERA</option>
+<option value="HABILIDAD BLANDA">HABILIDAD BLANDA</option>
+<option value="RELLAMADO">RELLAMADO</option>
+<option value="EMPATÍA">EMPATÍA</option>
+<option value="INTENCIÓN DE CONTENCIÓN">INTENCIÓN DE CONTENCIÓN</option>
+<option value="CORTE RAC">CORTE RAC</option>
+<option value="REBATIMIENTO DE OBJECIONES">REBATIMIENTO DE OBJECIONES</option>
+<option value="NEGOCIACIÓN">NEGOCIACIÓN</option>
+<option value="HABILIDAD CON LOS APLICATIVOS (DEMORA EN IMPACTO)">HABILIDAD CON LOS APLICATIVOS (DEMORA EN IMPACTO)</option>
+<option value="CUMPLIMIENTO DE PROCESO">CUMPLIMIENTO DE PROCESO</option>
+</select>
+</div>
 
-        <div class="campo">
-            <label>Oportunidad de Mejora</label>
-            <select name="entry.1986049857" required>
-                <option value="">Selecciona</option>
-                <option value="EMPATÍA">EMPATÍA</option>
-                <option value="NEGOCIACIÓN">NEGOCIACIÓN</option>
-                <option value="CUMPLIMIENTO DE PROCESO">CUMPLIMIENTO DE PROCESO</option>
-            </select>
-        </div>
 
-        <div class="campo">
-            <label>Accion de Seguimiento</label>
-            <select id="Seguimiento" name="entry.1722660845" required>
-                <option value="">Selecciona</option>
-                <option value="FEEDBACK DE MEJORA">FEEDBACK DE MEJORA</option>
-                <option value="APLAZAMIENTO">APLAZAMIENTO</option>
-            </select>
-        </div>
+<div class="campo">
+<label>Oportunidad de Mejora 3</label>
+<select id="Mejora3" name="entry.1335755996" required>
+<option value="">Selecciona</option>
+<option value="TIEMPOS EN ESPERA">TIEMPOS EN ESPERA</option>
+<option value="HABILIDAD BLANDA">HABILIDAD BLANDA</option>
+<option value="RELLAMADO">RELLAMADO</option>
+<option value="EMPATÍA">EMPATÍA</option>
+<option value="INTENCIÓN DE CONTENCIÓN">INTENCIÓN DE CONTENCIÓN</option>
+<option value="CORTE RAC">CORTE RAC</option>
+<option value="REBATIMIENTO DE OBJECIONES">REBATIMIENTO DE OBJECIONES</option>
+<option value="NEGOCIACIÓN">NEGOCIACIÓN</option>
+<option value="HABILIDAD CON LOS APLICATIVOS (DEMORA EN IMPACTO)">HABILIDAD CON LOS APLICATIVOS (DEMORA EN IMPACTO)</option>
+<option value="CUMPLIMIENTO DE PROCESO">CUMPLIMIENTO DE PROCESO</option>
+</select>
+</div>
+  
+<div class="campo">
+<label>Descripción de No Contención</label>
+<textarea id="descripcionNoContencion"
+          name="entry.1131024963"
+          rows="4"
+          required></textarea>
+</div>
 
-        <div class="campo" id="div_inicio" style="display:none;">
-            <label>Inicio de Aplazamiento</label>
-            <input type="date" name="entry.540982508" id="inicio_aplazamiento">
-        </div>
+<div class="campo">
+<label>Hubo Solucion al Req. del cliente</label>
+<select id="Solucionreq" name="entry.1954737468" required>
+<option value="">Selecciona</option>
+<option value="SI">SI</option>
+<option value="NO">NO</option>
+<option value="NO APLICA">NO APLICA</option>
+</select>
+</div>
 
-        <div class="campo" id="div_fin" style="display:none;">
-            <label>Fin de Aplazamiento</label>
-            <input type="date" name="entry.1574773486" id="fin_aplazamiento">
-        </div>
+<div class="campo">
+<label>Tiene Opcion a Abordar</label>
+<select id="Opcionabordar" name="entry.2024872077" required>
+<option value="">Selecciona</option>
+<option value="SI">SI</option>
+<option value="NO">NO</option>
+</select>
+</div>
 
-        <div class="campo" style="grid-column: span 2;">
-            <label>Resumen de la Llamada</label>
-            <textarea name="entry.1970751650" required></textarea>
-        </div>
-    </div>
+<div class="campo">
+<label>Agente Ofrece</label>
+<select id="Agenteofrece" name="entry.64049186" required>
+<option value="">Selecciona</option>
+<option value="SI - CON INTENCION">SI - CON INTENCION</option>
+<option value="SI - SOLO INFORMATIVO">SI - SOLO INFORMATIVO</option>
+<option value="NO">NO</option>
+</select>
+</div>
+  
 
-    <button type="submit" id="btnEnviar">Enviar Registro</button>
-    <div class="mensaje" id="mensaje"></div>
+<div class="campo">
+<label>Motivo de no venta</label>
+<select id="Noventa" name="entry.932601302" required>
+<option value="">Selecciona</option>
+</select>
+</div>
+  
+<div class="campo">
+<label>Producto Ofrecido</label>
+<select id="Productoofrecido" name="entry.698375446" required>
+<option value="">Selecciona</option>
+<option value="BAF">BAF</option>
+<option value="VOZ">VOZ</option>
+<option value="RECAMBIO">RECAMBIO</option>
+</select>
+</div>  
+
+ <div class="campo">
+<label>Se Concreta la Venta</label>
+<select id="Concretaventa" name="entry.1271045405" required>
+<option value="">Selecciona</option>
+<option value="SI">SI</option>
+<option value="NO">NO</option>
+</select>
+</div>  
+
+<div class="campo">
+<label>Que Producto se Vendio</label>
+<select id="Productovendido" name="entry.1766526396" required>
+<option value="">Selecciona</option>
+<option value="BAF">BAF</option>
+<option value="VOZ">VOZ</option>
+<option value="RECAMBIO">RECAMBIO</option>
+<option value="NO APLICA">NO APLICA</option>
+</select>
+</div>  
+  
+
+<div class="campo">
+<label>Detalle de la causa del Desvio</label>
+<textarea id="Detallecausadesvio"
+          name="entry.249344188"
+          rows="4"
+          required></textarea>
+</div>
+
+<div class="campo">
+<label>Resumen de la Llamada</label>
+<textarea id="Resumenllamada"
+          name="entry.1970751650"
+          rows="4"
+          required></textarea>
+</div>
+  
+<div class="campo">
+<label>Accion de Seguimiento</label>
+<select id="Seguimiento" name="entry.1722660845" required>
+<option value="">Selecciona</option>
+<option value="FEEDBACK DE MEJORA">FEEDBACK DE MEJORA</option>
+<option value="AMONESTACIÓN VERBAL">AMONESTACIÓN VERBAL</option>
+<option value="CARTA DE COMPROMISO">CARTA DE COMPROMISO</option>
+<option value="APLAZAMIENTO">APLAZAMIENTO</option>
+<option value="AMONESTACIÓN ESCRITA">AMONESTACIÓN ESCRITA</option>
+<option value="SUSPENSIÓN 1 DÍA">SUSPENSIÓN 1 DÍA</option>
+<option value="SUSPENSIÓN 3 DÍAS">SUSPENSIÓN 3 DÍAS</option>
+<option value="SUSPENSIÓN 5 DÍAS">SUSPENSIÓN 5 DÍAS</option>
+<option value="SUSPENSIÓN 8 DÍAS">SUSPENSIÓN 8 DÍAS</option>  
+</select>
+</div>  
+
+<div class="campo" id="campo_inicio_aplazamiento">
+<label>Inicio de Aplazamiento</label>
+<input type="date" 
+       name="entry.540982508" 
+       required>
+</div>
+
+<div class="campo" id="campo_fin_aplazamiento">
+<label>Fin de Aplazamiento</label>
+<input type="date" 
+       name="entry.1574773486" 
+       required>
+</div>
+
+  
+
+
+<button type="submit">Enviar Registro</button>
+<div class="mensaje" id="mensaje"></div>
 
 </form>
 
-<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(sent){showSuccess();}"></iframe>
-
 <script>
-let sent = false;
+  /*=====MOTIVIOS EPA SEGUN SELECCION=====*/
+document.addEventListener("DOMContentLoaded", function () {
+    const servicioSelect = document.getElementById("Cauzaraiz");
+    const Motivocausaraiz = document.getElementById("Motivocausaraiz");
 
-document.addEventListener("DOMContentLoaded", function() {
+    // Motivos de causa raíz
+    const motivosCliente = [
+        "CLIENTE CUELGA SIN FINALIZAR PROCESO",
+        "NO HAY MOTIVO DE MALA CALIFICACION",
+        "NO GESTIONABLE (TERCERO)",
+        "NO GESTIONABLE (NO BRINDA DATOS)",
+        "CLIENTE SOLICITA AJUSTE QUE NO APLICA",
+        "NO CONFORME POR COBROS DE MORA"
+    ];
 
-    const form = document.getElementById("googleForm");
-    const mensaje = document.getElementById("mensaje");
+    const motivosAsesor = [
+        "COMPORTAMIENTO / EVASIÓN DEL PROCESO",
+        "HABILIDAD / MANEJO DE CLIENTE CRÍTICO",
+        "CONOCIMIENTO - PRODUCTOS",
+        "HABILIDAD - ASESOR NO TIENE SENTIDO DE URGENCIA",
+        "HABILIDAD - ASESOR CARECE DE EMPATÍA",
+        "HABILIDAD / MANEJO DE APLICATIVOS",
+        "CONOCIMIENTO / APLICATIVOS DISPONIBLES",
+        "CONOCIMIENTO / APLICATIVOS DE RETENCIÓN"
+    ];
 
-    // 1. LÓGICA DE MOTIVOS DE BAJA (FIJA / MOVIL)
-    const servicio = document.getElementById("Servicio");
-    const motReg = document.getElementById("motivoRegistrado");
-    const motReal = document.getElementById("motivoReal");
+    const motivosVmo = [
+        "SE CAE LLAMADA ABRUPTAMENTE",
+        "APLICATIVOS DEGRADADO (PROTOCOLO)",
+        "NO APARECE LLAMADA EN EL GRABADOR",
+        "CAÍDA DE SISTEMA",
+        "LLAMADA SIN AUDIO",
+        "CLIENTE DISCONFORME CON PROCESO DE BIOMETRIA",
+        "CLIENTE DISCONFORME CON OFERTA DISPONIBLE EN SISTEMA",
+        "LA SOLUCIÓN DEPENDE DE OTRA ÁREA (SUCURSAL PRESENCIAL)",
+        "LA SOLUCIÓN DEPENDE DE OTRA ÁREA (SOPORTE TÉCNICO)",
+        "LA SOLUCIÓN DEPENDE DE OTRA ÁREA (ACTIVACIÓN DE PLATAFORMAS)",
+        "DISCONFORMIDAD POR ENTREGA DE EQUIPOS EN SUCURSAL"
+    ];
 
-    const motivosFija = ["COMPETENCIA CON MEJOR PRECIO","FALLA MASIVA","FALLECIMIENTO","MALA EXPERIENCIA TÉCNICA","TRASLADO","BAJA NO CURSADA"];
-    const motivosMovil = ["CAMBIO A LA COMPETENCIA","CLIENTE CON DEUDA","NECESITA REDUCIR GASTOS","VIAJE AL EXTRANJERO"];
+    const motivosExperiencia = [
+        "EJECUTIVO DE OTRO ALIADO NO ATIENDE SOLICITUD DEL CLIENTE",
+        "EJECUTIVO DE OTRO ALIADO ENTREGA INFORMACION ERRADA AL CLIENTE",
+        "ASESOR DE SUCURSAL NO ATIENDE LA SOLICITUD DEL CLIENTE",
+        "CLIENTE INCONFORME POR TIEMPO DE ESPERA PARA LLEGAR A RETENCIÓN",
+        "MALA ATENCION DE EJECUTIVO ANTERIOR (OTRO ALIADO)",
+        "EJECUTIVO ALIADO ENTREGA INFORMACION ERRADA AL CLIENTE",
+        "NO APLICA TRANSFERENCIA A RETENCIÓN",
+        "CLIENTE DISCONFORME POR OFERTA NO APLICADA"
+    ];
 
-    servicio.addEventListener("change", function() {
-        let lista = this.value === "RETENCIONES FIJA" ? motivosFija : motivosMovil;
-        [motReg, motReal].forEach(sel => {
-            sel.innerHTML = '<option value="">Selecciona</option>';
-            lista.forEach(m => sel.add(new Option(m, m)));
+    // Función para cargar los motivos en el campo de "Motivo de Causa Raíz"
+    function cargarMotivos(lista) {
+        Motivocausaraiz.innerHTML = '<option value="">Selecciona</option>';
+        lista.forEach(motivo => {
+            let option = new Option(motivo, motivo);
+            Motivocausaraiz.add(option);
         });
-    });
+    }
 
-    // 2. LÓGICA CAUSA RAIZ EPA
-    const causaRaiz = document.getElementById("Cauzaraiz");
-    const motCausa = document.getElementById("Motivocausaraiz");
-
-    const motivos = {
-        "ASESOR": ["COMPORTAMIENTO / EVASIÓN","HABILIDAD / MANEJO","CONOCIMIENTO"],
-        "CLIENTE": ["CUELGA SIN FINALIZAR","NO GESTIONABLE"],
-        "VMO": ["CAÍDA DE SISTEMA","LLAMADA SIN AUDIO"]
-    };
-
-    causaRaiz.addEventListener("change", function() {
-        motCausa.innerHTML = '<option value="">Selecciona</option>';
-        if(motivos[this.value]) {
-            motivos[this.value].forEach(m => motCausa.add(new Option(m, m)));
+    // Detecta cambios en Causa Raíz
+    servicioSelect.addEventListener("change", function () {
+        switch (this.value) {
+            case "ASESOR":
+                cargarMotivos(motivosAsesor);
+                break;
+            case "CLIENTE":
+                cargarMotivos(motivosCliente);
+                break;
+            case "VMO":
+                cargarMotivos(motivosVmo);
+                break;
+            case "EXPERIENCIA ANTERIOR":
+                cargarMotivos(motivosExperiencia);
+                break;
+            default:
+                Motivocausaraiz.innerHTML = '<option value="">Selecciona</option>';
         }
     });
+});
+</script>
 
-    // 3. LÓGICA TIPO DE MUESTRA (MOSTRAR/OCULTAR)
-    const tipoMuestra = document.getElementById("Tipodemuestra");
-    const camposDinamicos = document.querySelectorAll('[data-seccion]');
+  
 
-    tipoMuestra.addEventListener("change", function() {
-        const seleccion = this.value;
-        camposDinamicos.forEach(div => {
-            const inputs = div.querySelectorAll('input, select, textarea');
-            if(div.getAttribute('data-seccion') === seleccion) {
-                div.style.display = "flex";
-                inputs.forEach(i => i.required = true);
-            } else {
-                div.style.display = "none";
-                inputs.forEach(i => { i.required = false; i.value = ""; });
-            }
-        });
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+   
+    
+  
+  /* ===============================
+   MOTIVO DE BAJA
+=================================*/
+const servicio = document.getElementById("Servicio");
+const motivoRegistrado = document.getElementById("motivoRegistrado");
+const motivoReal = document.getElementById("motivoReal");
+
+const motivosFija = ["COMPETENCIA CON MEJOR PRECIO","FALLA MASIVA","FALLECIMIENTO","MALA EXPERIENCIA TÉCNICA","NO ENTREGA INFORMACIÓN","NO HAY FACTIBILIDAD","NO RECONOCE VENTA","OFERTA NO APLICADA","RECLAMO AJUSTE IPC","RECLAMOS FACTURACIÓN","RENOVACIÓN DESCUENTO","SITUACION ECONÓMICA","SUSTITUYE POR PRODUCTO MOVISTAR","TRASLADO","BAJA NO CURSADA","COBROS EN LA BOLETA","LLAMADA CORTA","LLAMADA NO SE ENCUENTRA EN VERINT","LLAMADA SIN ATENCIÓN"];
+
+const motivosMovil = ["CAMBIO A LA COMPETENCIA","CLIENTE CON DEUDA","MAL FUNCIONAMIENTO DEL PRODUCTO","MALA EXPERIENCIA EN LA VENTA / POSTVENTA","NECESITA REDUCIR GASTOS","NO RECONOCE LA VENTA","NO USA EL PRODUCTO","SUSTITUYE POR OTRO SERVICIO","VIAJE AL EXTRANJERO","NO APLICA","BAJA NO CURSADA","COBROS EN LA BOLETA","LLAMADA CORTA","LLAMADA NO SE ENCUENTRA EN VERINT","LLAMADA SIN ATENCIÓN"];
+
+function cargarMotivosBaja(lista){
+    motivoRegistrado.innerHTML='<option value="">Selecciona</option>';
+    motivoReal.innerHTML='<option value="">Selecciona</option>';
+    lista.forEach(m=>{
+        motivoRegistrado.add(new Option(m,m));
+        motivoReal.add(new Option(m,m));
     });
+}
 
-    // 4. LÓGICA APLAZAMIENTO
-    const seguimiento = document.getElementById("Seguimiento");
-    const dInicio = document.getElementById("div_inicio");
-    const dFin = document.getElementById("div_fin");
-
-    seguimiento.addEventListener("change", function() {
-        const esAplazamiento = this.value === "APLAZAMIENTO";
-        dInicio.style.display = dFin.style.display = esAplazamiento ? "flex" : "none";
-        dInicio.querySelector('input').required = dFin.querySelector('input').required = esAplazamiento;
-    });
-
-    // 5. ENVÍO DEL FORMULARIO
-    form.addEventListener("submit", function() {
-        sent = true;
-        mensaje.innerText = "⏳ Enviando datos...";
-        document.getElementById("btnEnviar").disabled = true;
-    });
+servicio.addEventListener("change",function(){
+    if(this.value==="RETENCIONES FIJA"){
+        cargarMotivosBaja(motivosFija);
+    }else if(this.value==="RETENCIONES MOVIL" || this.value==="CONTIGO"){
+        cargarMotivosBaja(motivosMovil);
+    }else{
+        motivoRegistrado.innerHTML='<option value="">Selecciona</option>';
+        motivoReal.innerHTML='<option value="">Selecciona</option>';
+    }
 });
 
-function showSuccess() {
-    const mensaje = document.getElementById("mensaje");
-    mensaje.innerText = "✅ Registro guardado en Google Sheets correctamente";
-    document.getElementById("googleForm").reset();
-    document.getElementById("btnEnviar").disabled = false;
-    
-    // Resetear visibilidad
-    setTimeout(() => { 
-        mensaje.innerText = ""; 
-        location.reload(); // Recarga para limpiar estados de validación
-    }, 3000);
+
+/* ===============================
+   NO VENTA
+=================================*/
+const agenteOfrece = document.getElementById("Agenteofrece");
+const causaRaiz = document.getElementById("Cauzaraiz");
+const motivoNoVenta = document.getElementById("Noventa");
+
+const nvAsesor = ["ASESOR NO ABORDA","ASESOR SOLO INFORMA","ASESOR NO REBATE OBJECIONES","FALTA DE HABILIDAD BLANDA"];
+const nvCliente = ["CLIENTE CRÍTICO / NO DESEA ESCUCHAR OFERTAS","CLIENTE CORTA LLAMADA","YA TIENE LOS PRODUCTOS","NO DESEA NADA CON MOVISTAR","MALA EXPERIENCIA CON LOS SERVICIOS"];
+const nvVmo = ["SIN SOLUCIÓN DE AVERÍAS","COBROS ALTOS EN SU SERVICIO ACTUAL","DEMORA EN LAS INSTALACIONES","CAÍDA DE SISTEMA","OFERTA NO ES LO QUE ESPERABA","CLIENTE SUSPENDIDO"];
+const nvExp = ["TRANSFERENCIA INCORRECTA A NUESTRA ÁREA","MALA EXPERIENCIA CON LAS ATENCIONES ANTERIORES","INFORMACIÓN INCORRECTA EN ATENCIÓN ANTERIOR","DISCONFORME CON EL TIEMPO DE ESPERA EN TRANSFERENCIAS"];
+
+function cargarNoVenta(lista){
+    motivoNoVenta.innerHTML='<option value="">Selecciona</option>';
+    lista.forEach(m=>motivoNoVenta.add(new Option(m,m)));
 }
+
+function validarNoVenta(){
+    const valor = agenteOfrece.value;
+    if(valor==="NO" || valor==="SI - SOLO INFORMATIVO"){
+        switch(causaRaiz.value){
+            case "ASESOR": cargarNoVenta(nvAsesor); break;
+            case "CLIENTE": cargarNoVenta(nvCliente); break;
+            case "VMO": cargarNoVenta(nvVmo); break;
+            case "EXPERIENCIA ANTERIOR": cargarNoVenta(nvExp); break;
+            default: motivoNoVenta.innerHTML='<option value="">Selecciona</option>';
+        }
+    }else{
+        motivoNoVenta.innerHTML='<option value="">Selecciona</option>';
+    }
+}
+
+agenteOfrece.addEventListener("change", validarNoVenta);
+causaRaiz.addEventListener("change", validarNoVenta);
+
+
+/* ===============================
+   ENVIO Y LIMPIEZA
+=================================*/
+const form = document.getElementById("googleForm");
+const mensaje = document.getElementById("mensaje");
+
+document.addEventListener("DOMContentLoaded", function() {
+  const form = document.getElementById("googleForm");
+  const mensaje = document.getElementById("mensaje");
+
+  // Esto es para el "Tipo de Muestra"
+  const tipoMuestra = document.getElementById("Tipodemuestra");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault(); // Evita que el formulario se envíe de inmediato
+
+    // Obtener todas las opciones seleccionadas de "Tipo de Muestra"
+    const selectedTypes = Array.from(tipoMuestra.selectedOptions).map(option => option.value);
+    
+    // Verifica si al menos se ha seleccionado un tipo de muestra
+    if (selectedTypes.length > 0) {
+        // Establece el valor de tipo de muestra para el envío (como un array)
+        document.getElementById("Tipodemuestra").name = 'entry.1613585774'; // El nombre del campo en Google Forms
+
+        // Creamos un campo oculto para enviar todos los valores seleccionados como array
+        const hiddenField = document.createElement('input');
+        hiddenField.type = 'hidden';
+        hiddenField.name = 'entry.1613585774'; // Asegúrate de que este "name" sea el correcto para Google Forms
+        hiddenField.value = selectedTypes.join(','); // Se unen los valores seleccionados como un string separado por comas
+        form.appendChild(hiddenField);
+      
+        // Espera un pequeño tiempo antes de enviar el formulario para cada tipo de muestra
+        setTimeout(() => {
+          form.submit(); // Envía el formulario con el tipo de muestra actual
+          mensaje.innerText = "✅ Registro enviado correctamente";
+        }, 1000); // 1 segundo de espera
+    } else {
+      alert("Por favor, seleccione al menos un tipo de muestra.");
+    }
+  });
+});
+
+/* ===============================
+   CONDICIONAL TIPO DE MUESTRA
+=================================*/
+
+const tipoMuestra = document.getElementById("Tipodemuestra");
+
+/* Listas por tipo */
+const camposEPA = [
+"801462156","775761170","1707404081",
+"1986049857","435072420","1335755996",
+"249344188","1970751650","1722660845",
+"540982508","1574773486"
+];
+
+const camposEFECTIVIDAD = [
+"1723677195","229089857",
+"1986049857","435072420","1335755996",
+"1131024963",
+"249344188","1970751650","1722660845",
+"540982508","1574773486"
+];
+
+const camposCROSS = [
+"1954737468","2024872077","64049186",
+"932601302","698375446","1271045405",
+"1766526396",
+"1986049857","435072420","1335755996",
+"249344188","1970751650","1722660845",
+"540982508","1574773486"
+];
+
+/* Oculta todos los campos condicionales */
+function ocultarTodos(){
+    const todos = new Set([
+        ...camposEPA,
+        ...camposEFECTIVIDAD,
+        ...camposCROSS
+    ]);
+
+    todos.forEach(id=>{
+        const campo = document.querySelector(`[name="entry.${id}"]`);
+        if(campo){
+            const contenedor = campo.closest(".campo");
+            contenedor.style.display="none";
+
+            // 🔥 Quitar required cuando se oculta
+            campo.required = false;
+        }
+    });
+}
+
+/* Mostrar campos según selección */
+function actualizarCampos(){
+
+    ocultarTodos();
+   
+
+    const seleccionados = Array.from(tipoMuestra.selectedOptions)
+                                .map(op => op.value);
+
+    let camposAMostrar = new Set();
+
+    if(seleccionados.includes("EPA")){
+        camposEPA.forEach(c=>camposAMostrar.add(c));
+    }
+
+    if(seleccionados.includes("EFECTIVIDAD")){
+        camposEFECTIVIDAD.forEach(c=>camposAMostrar.add(c));
+    }
+
+    if(seleccionados.includes("CROSS")){
+        camposCROSS.forEach(c=>camposAMostrar.add(c));
+    }
+
+    camposAMostrar.forEach(id=>{
+        const campo = document.querySelector(`[name="entry.${id}"]`);
+        if(campo){
+            const contenedor = campo.closest(".campo");
+              contenedor.style.display="flex";
+
+              /* Activar required cuando se muestra*/
+              campo.required = true;
+        }
+    });
+}
+
+/* Evento */
+tipoMuestra.addEventListener("change", actualizarCampos);
+
+/* Inicial */
+ocultarTodos();
+actualizarCampos();
+
+  /*<! ---- CONDICIONAL APLAZAMIENTO --->*/
+
+
+const seguimiento = document.getElementById("Seguimiento");
+
+const campoInicioAplazamiento = document.getElementById("campo_inicio_aplazamiento");
+const campoFinAplazamiento = document.getElementById("campo_fin_aplazamiento");
+
+function actualizarAplazamiento(){
+
+    const inputInicio = campoInicioAplazamiento.querySelector("input");
+    const inputFin = campoFinAplazamiento.querySelector("input");
+
+    if(seguimiento.value === "APLAZAMIENTO"){
+
+        campoInicioAplazamiento.style.display = "flex";
+        campoFinAplazamiento.style.display = "flex";
+
+        inputInicio.required = true;
+        inputFin.required = true;
+
+    } else {
+
+        campoInicioAplazamiento.style.display = "none";
+        campoFinAplazamiento.style.display = "none";
+
+        inputInicio.required = false;
+        inputFin.required = false;
+
+        inputInicio.value = "";
+        inputFin.value = "";
+    }
+}
+
+/* Evento */
+seguimiento.addEventListener("change", actualizarAplazamiento);
+
+/* Estado inicial */
+actualizarAplazamiento();
+
+  
+
+  });
+
 </script>
 
 </body>
 </html>
+
+
+
+
+
 
