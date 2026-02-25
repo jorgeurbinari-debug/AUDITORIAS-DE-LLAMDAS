@@ -242,24 +242,13 @@ target="hidden_iframe">
 </select>
 </div>
 
-<div class="campo">
-  <label>Tipo de Muestra</label><br>
-
-  <label>
-    <input type="checkbox" name="entry.1613585774" value="EPA">
-    EPA
-  </label><br>
-
-  <label>
-    <input type="checkbox" name="entry.1613585774" value="EFECTIVIDAD">
-    EFECTIVIDAD
-  </label><br>
-
-  <label>
-    <input type="checkbox" name="entry.1613585774" value="CROSS">
-    CROSS
-  </label>
-
+<div class="campo"> 
+  <label>Tipo de Muestra</label> 
+  <select id="Tipodemuestra" name="entry.1613585774" multiple required> 
+    <option value="EPA">EPA</option> 
+    <option value="EFECTIVIDAD">EFECTIVIDAD</option> 
+    <option value="CROSS">CROSS</option> 
+  </select> 
 </div>
 
 <div class="campo">
@@ -723,5 +712,6 @@ form.addEventListener("submit", function(){
 
 </body>
 </html>
+
 
 
