@@ -563,31 +563,37 @@ const camposEPA = ["801462156","775761170","1707404081","1986049857","435072420"
 const camposEFECTIVIDAD = ["1723677195","229089857","1986049857","435072420","1335755996","1131024963","249344188","1970751650","1722660845","540982508","1574773486"];
 const camposCROSS = ["1954737468","2024872077","64049186","932601302","698375446","1271045405","1766526396","1986049857","435072420","1335755996","249344188","1970751650","1722660845","540982508","1574773486"];
 
+/* ===============================
+   CORRECCIÓN DE VALIDACIÓN Y VISIBILIDAD
+=================================*/
 function ocultarTodos(){
-    const todos = new Set([...camposEPA,...camposEFECTIVIDAD,...camposCROSS]);
-    todos.forEach(id=>{
+    const todos = new Set([...camposEPA, ...camposEFECTIVIDAD, ...camposCROSS]);
+    todos.forEach(id => {
         const campo = document.querySelector(`[name="entry.${id}"]`);
         if(campo){
-            campo.closest(".campo").style.display="none";
-            campo.required=false;
+            campo.closest(".campo").style.display = "none";
+            // IMPORTANTE: Quitamos el required para que el navegador deje enviar el form
+            campo.required = false; 
+            campo.disabled = true; // Opcional: evita que viajen datos vacíos
         }
     });
 }
 
 function actualizarCampos(){
     ocultarTodos();
-    const seleccionados = Array.from(tipoMuestra.selectedOptions).map(op=>op.value);
+    const seleccionados = Array.from(tipoMuestra.selectedOptions).map(op => op.value);
     let mostrar = new Set();
 
-    if(seleccionados.includes("EPA")) camposEPA.forEach(c=>mostrar.add(c));
-    if(seleccionados.includes("EFECTIVIDAD")) camposEFECTIVIDAD.forEach(c=>mostrar.add(c));
-    if(seleccionados.includes("CROSS")) camposCROSS.forEach(c=>mostrar.add(c));
+    if(seleccionados.includes("EPA")) camposEPA.forEach(c => mostrar.add(c));
+    if(seleccionados.includes("EFECTIVIDAD")) camposEFECTIVIDAD.forEach(c => mostrar.add(c));
+    if(seleccionados.includes("CROSS")) camposCROSS.forEach(c => mostrar.add(c));
 
-    mostrar.forEach(id=>{
+    mostrar.forEach(id => {
         const campo = document.querySelector(`[name="entry.${id}"]`);
         if(campo){
-            campo.closest(".campo").style.display="flex";
-            campo.required=true;
+            campo.closest(".campo").style.display = "flex";
+            campo.required = true; // Solo pedimos el dato si el campo es visible
+            campo.disabled = false;
         }
     });
 }
@@ -631,3 +637,4 @@ actualizarAplazamiento();
 
 </body>
 </html>
+
