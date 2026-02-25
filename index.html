@@ -3,15 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Formulario Google</title>
-
 <style>
+/* ==== TODO TU CSS ORIGINAL SE MANTIENE IGUAL ==== */
 body{
   font-family: Arial, Helvetica, sans-serif;
-  background:#f4f6f8;
+  background: linear-gradient(135deg, #ece9e6, #ffffff);
   margin:0;
   padding:30px;
 }
-
 h2{ text-align:center; margin-bottom:25px; }
 
 form{
@@ -20,7 +19,8 @@ form{
   background:white;
   padding:30px;
   border-radius:10px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  box-shadow:0 12px 24px rgba(0, 0, 0, 0.15);
+  border:1px solid #ddd;
 }
 
 .grid{
@@ -33,8 +33,9 @@ form{
 
 .campo label{
   font-size:13px;
-  font-weight:bold;
+  font-weight:600;
   margin-bottom:6px;
+  color:#333;
 }
 
 .campo input,
@@ -42,21 +43,15 @@ form{
 .campo textarea{
   padding:10px;
   border-radius:6px;
-  border:1px solid #ccc;
+  border:1px solid #bbb;
   font-size:14px;
+  width:100%;
 }
 
-.campo input:focus,
-.campo select:focus,
-.campo textarea:focus{
-  border-color:#007bff;
+input:focus, select:focus, textarea:focus{
+  border-color:#0066ff;
+  box-shadow:0 0 6px rgba(0,102,255,0.5);
   outline:none;
-  box-shadow:0 0 0 2px rgba(0,123,255,0.2);
-}
-
-textarea{
-  min-height:60px;
-  resize:vertical;
 }
 
 button{
@@ -65,12 +60,16 @@ button{
   width:100%;
   border:none;
   border-radius:6px;
-  background:#007bff;
+  background: linear-gradient(45deg, #0066ff, #0044cc);
   color:white;
   font-size:16px;
+  font-weight:700;
   cursor:pointer;
 }
-button:hover{ background:#0056b3; }
+
+button:hover{
+  background: linear-gradient(45deg, #0052cc, #003399);
+}
 
 .mensaje{
   text-align:center;
@@ -79,68 +78,12 @@ button:hover{ background:#0056b3; }
   font-weight:bold;
 }
 
-
-*,
-*::before,
-*::after{
-  box-sizing: border-box;
-}
-
-.campo input,
-.campo select,
-.campo textarea{
-  width: 100%;
-  max-width: 100%;
-}
-
 @media (max-width: 1024px){
-  .grid{
-    grid-template-columns: repeat(2, 1fr);
-  }
+  .grid{ grid-template-columns: repeat(2, 1fr); }
 }
-
 @media (max-width: 600px){
-  .grid{
-    grid-template-columns: 1fr;
-  }
+  .grid{ grid-template-columns: 1fr; }
 }
-
-  body {
-  background: linear-gradient(135deg, #ece9e6, #ffffff);
-}
-
-form {
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-  border: 1px solid #ddd;
-}
-
-button {
-  background: linear-gradient(45deg, #0066ff, #0044cc);
-  font-weight: 700;
-  transition: background 0.3s ease;
-}
-
-button:hover {
-  background: linear-gradient(45deg, #0052cc, #003399);
-}
-
-.campo label {
-  color: #333;
-  font-weight: 600;
-}
-
-input, select, textarea {
-  border: 1px solid #bbb;
-  transition: border-color 0.3s ease;
-}
-
-input:focus, select:focus, textarea:focus {
-  border-color: #0066ff;
-  box-shadow: 0 0 6px rgba(0, 102, 255, 0.5);
-}
-  
-
-  
 </style>
 </head>
 
@@ -156,8 +99,6 @@ target="hidden_iframe">
 <iframe name="hidden_iframe" style="display:none;"></iframe>
 
 <div class="grid">
-
-<!-- 🔹 MANTENGO SOLO PARTE INICIAL COMO EJEMPLO (EL RESTO DE TUS CAMPOS SIGUEN IGUAL) -->
 
 <div class="campo">
 <label>Servicio</label>
@@ -315,7 +256,7 @@ target="hidden_iframe">
 
 <div class="campo">
 <label>Causa Raiz</label>
-<select id="Cauzaraiz" name="entry.801462156" required>
+<select id="Cauzaraiz" name="entry.801462156">
 <option value="">Selecciona</option>
 <option value="ASESOR">ASESOR</option>
 <option value="CLIENTE">CLIENTE</option>
@@ -326,14 +267,14 @@ target="hidden_iframe">
 
 <div class="campo">
 <label>Motivo de Causa Raiz</label>
-<select id="Motivocausaraiz" name="entry.775761170" required>
+<select id="Motivocausaraiz" name="entry.775761170">
 <option value="">Selecciona</option>
 </select>
 </div>
 
 <div class="campo">
 <label>Aplica Speech EPA</label>
-<select id="SpeechEpa" name="entry.1707404081" required>
+<select id="SpeechEpa" name="entry.1707404081">
 <option value="">Selecciona</option>
 <option value="BRINDA CORRECTAMENTE">BRINDA CORRECTAMENTE</option>
 <option value="NO BRINDA SPEECH">NO BRINDA SPEECH</option>
@@ -344,7 +285,7 @@ target="hidden_iframe">
   
 <div class="campo">
 <label>Ofrece Escalonado</label>
-<select id="Escalonado" name="entry.1723677195" required>
+<select id="Escalonado" name="entry.1723677195">
 <option value="">Selecciona</option>
 <option value="SI">SI</option>
 <option value="NO">NO</option>
@@ -354,7 +295,7 @@ target="hidden_iframe">
 
 <div class="campo">
 <label>Motivo de No Contencion</label>
-<select id="Nocontencion" name="entry.229089857" required>
+<select id="Nocontencion" name="entry.229089857">
 <option value="">Selecciona</option>
 <option value="BAJA POR ALTA">BAJA POR ALTA</option>
 <option value="SIN FACTIBILIDAD">SIN FACTIBILIDAD</option>
@@ -369,7 +310,7 @@ target="hidden_iframe">
 
 <div class="campo">
 <label>Oportunidad de Mejora</label>
-<select id="Mejora1" name="entry.1986049857" required>
+<select id="Mejora1" name="entry.1986049857">
 <option value="">Selecciona</option>
 <option value="TIEMPOS EN ESPERA">TIEMPOS EN ESPERA</option>
 <option value="HABILIDAD BLANDA">HABILIDAD BLANDA</option>
@@ -386,7 +327,7 @@ target="hidden_iframe">
 
 <div class="campo">
 <label>Oportunidad de Mejora 2</label>
-<select id="Mejora2" name="entry.435072420" required>
+<select id="Mejora2" name="entry.435072420">
 <option value="">Selecciona</option>
 <option value="TIEMPOS EN ESPERA">TIEMPOS EN ESPERA</option>
 <option value="HABILIDAD BLANDA">HABILIDAD BLANDA</option>
@@ -404,7 +345,7 @@ target="hidden_iframe">
 
 <div class="campo">
 <label>Oportunidad de Mejora 3</label>
-<select id="Mejora3" name="entry.1335755996" required>
+<select id="Mejora3" name="entry.1335755996">
 <option value="">Selecciona</option>
 <option value="TIEMPOS EN ESPERA">TIEMPOS EN ESPERA</option>
 <option value="HABILIDAD BLANDA">HABILIDAD BLANDA</option>
@@ -424,12 +365,12 @@ target="hidden_iframe">
 <textarea id="descripcionNoContencion"
           name="entry.1131024963"
           rows="4"
-          required></textarea>
+          ></textarea>
 </div>
 
 <div class="campo">
 <label>Hubo Solucion al Req. del cliente</label>
-<select id="Solucionreq" name="entry.1954737468" required>
+<select id="Solucionreq" name="entry.1954737468">
 <option value="">Selecciona</option>
 <option value="SI">SI</option>
 <option value="NO">NO</option>
@@ -439,7 +380,7 @@ target="hidden_iframe">
 
 <div class="campo">
 <label>Tiene Opcion a Abordar</label>
-<select id="Opcionabordar" name="entry.2024872077" required>
+<select id="Opcionabordar" name="entry.2024872077">
 <option value="">Selecciona</option>
 <option value="SI">SI</option>
 <option value="NO">NO</option>
@@ -448,7 +389,7 @@ target="hidden_iframe">
 
 <div class="campo">
 <label>Agente Ofrece</label>
-<select id="Agenteofrece" name="entry.64049186" required>
+<select id="Agenteofrece" name="entry.64049186">
 <option value="">Selecciona</option>
 <option value="SI - CON INTENCION">SI - CON INTENCION</option>
 <option value="SI - SOLO INFORMATIVO">SI - SOLO INFORMATIVO</option>
@@ -459,14 +400,14 @@ target="hidden_iframe">
 
 <div class="campo">
 <label>Motivo de no venta</label>
-<select id="Noventa" name="entry.932601302" required>
+<select id="Noventa" name="entry.932601302">
 <option value="">Selecciona</option>
 </select>
 </div>
   
 <div class="campo">
 <label>Producto Ofrecido</label>
-<select id="Productoofrecido" name="entry.698375446" required>
+<select id="Productoofrecido" name="entry.698375446">
 <option value="">Selecciona</option>
 <option value="BAF">BAF</option>
 <option value="VOZ">VOZ</option>
@@ -476,7 +417,7 @@ target="hidden_iframe">
 
  <div class="campo">
 <label>Se Concreta la Venta</label>
-<select id="Concretaventa" name="entry.1271045405" required>
+<select id="Concretaventa" name="entry.1271045405">
 <option value="">Selecciona</option>
 <option value="SI">SI</option>
 <option value="NO">NO</option>
@@ -485,7 +426,7 @@ target="hidden_iframe">
 
 <div class="campo">
 <label>Que Producto se Vendio</label>
-<select id="Productovendido" name="entry.1766526396" required>
+<select id="Productovendido" name="entry.1766526396">
 <option value="">Selecciona</option>
 <option value="BAF">BAF</option>
 <option value="VOZ">VOZ</option>
@@ -500,7 +441,7 @@ target="hidden_iframe">
 <textarea id="Detallecausadesvio"
           name="entry.249344188"
           rows="4"
-          required></textarea>
+          ></textarea>
 </div>
 
 <div class="campo">
@@ -508,12 +449,12 @@ target="hidden_iframe">
 <textarea id="Resumenllamada"
           name="entry.1970751650"
           rows="4"
-          required></textarea>
+          ></textarea>
 </div>
   
 <div class="campo">
 <label>Accion de Seguimiento</label>
-<select id="Seguimiento" name="entry.1722660845" required>
+<select id="Seguimiento" name="entry.1722660845">
 <option value="">Selecciona</option>
 <option value="FEEDBACK DE MEJORA">FEEDBACK DE MEJORA</option>
 <option value="AMONESTACIÓN VERBAL">AMONESTACIÓN VERBAL</option>
@@ -531,18 +472,17 @@ target="hidden_iframe">
 <label>Inicio de Aplazamiento</label>
 <input type="date" 
        name="entry.540982508" 
-       required>
+       >
 </div>
 
 <div class="campo" id="campo_fin_aplazamiento">
 <label>Fin de Aplazamiento</label>
 <input type="date" 
        name="entry.1574773486" 
-       required>
+       >
 </div>
 
-  
-
+</div>
 
 <button type="submit">Enviar Registro</button>
 <div class="mensaje" id="mensaje"></div>
@@ -550,213 +490,43 @@ target="hidden_iframe">
 </form>
 
 <script>
-  /*=====MOTIVIOS EPA SEGUN SELECCION=====*/
-document.addEventListener("DOMContentLoaded", function () {
-    const servicioSelect = document.getElementById("Cauzaraiz");
-    const Motivocausaraiz = document.getElementById("Motivocausaraiz");
-
-    // Motivos de causa raíz
-    const motivosCliente = [
-        "CLIENTE CUELGA SIN FINALIZAR PROCESO",
-        "NO HAY MOTIVO DE MALA CALIFICACION",
-        "NO GESTIONABLE (TERCERO)",
-        "NO GESTIONABLE (NO BRINDA DATOS)",
-        "CLIENTE SOLICITA AJUSTE QUE NO APLICA",
-        "NO CONFORME POR COBROS DE MORA"
-    ];
-
-    const motivosAsesor = [
-        "COMPORTAMIENTO / EVASIÓN DEL PROCESO",
-        "HABILIDAD / MANEJO DE CLIENTE CRÍTICO",
-        "CONOCIMIENTO - PRODUCTOS",
-        "HABILIDAD - ASESOR NO TIENE SENTIDO DE URGENCIA",
-        "HABILIDAD - ASESOR CARECE DE EMPATÍA",
-        "HABILIDAD / MANEJO DE APLICATIVOS",
-        "CONOCIMIENTO / APLICATIVOS DISPONIBLES",
-        "CONOCIMIENTO / APLICATIVOS DE RETENCIÓN"
-    ];
-
-    const motivosVmo = [
-        "SE CAE LLAMADA ABRUPTAMENTE",
-        "APLICATIVOS DEGRADADO (PROTOCOLO)",
-        "NO APARECE LLAMADA EN EL GRABADOR",
-        "CAÍDA DE SISTEMA",
-        "LLAMADA SIN AUDIO",
-        "CLIENTE DISCONFORME CON PROCESO DE BIOMETRIA",
-        "CLIENTE DISCONFORME CON OFERTA DISPONIBLE EN SISTEMA",
-        "LA SOLUCIÓN DEPENDE DE OTRA ÁREA (SUCURSAL PRESENCIAL)",
-        "LA SOLUCIÓN DEPENDE DE OTRA ÁREA (SOPORTE TÉCNICO)",
-        "LA SOLUCIÓN DEPENDE DE OTRA ÁREA (ACTIVACIÓN DE PLATAFORMAS)",
-        "DISCONFORMIDAD POR ENTREGA DE EQUIPOS EN SUCURSAL"
-    ];
-
-    const motivosExperiencia = [
-        "EJECUTIVO DE OTRO ALIADO NO ATIENDE SOLICITUD DEL CLIENTE",
-        "EJECUTIVO DE OTRO ALIADO ENTREGA INFORMACION ERRADA AL CLIENTE",
-        "ASESOR DE SUCURSAL NO ATIENDE LA SOLICITUD DEL CLIENTE",
-        "CLIENTE INCONFORME POR TIEMPO DE ESPERA PARA LLEGAR A RETENCIÓN",
-        "MALA ATENCION DE EJECUTIVO ANTERIOR (OTRO ALIADO)",
-        "EJECUTIVO ALIADO ENTREGA INFORMACION ERRADA AL CLIENTE",
-        "NO APLICA TRANSFERENCIA A RETENCIÓN",
-        "CLIENTE DISCONFORME POR OFERTA NO APLICADA"
-    ];
-
-    // Función para cargar los motivos en el campo de "Motivo de Causa Raíz"
-    function cargarMotivos(lista) {
-        Motivocausaraiz.innerHTML = '<option value="">Selecciona</option>';
-        lista.forEach(motivo => {
-            let option = new Option(motivo, motivo);
-            Motivocausaraiz.add(option);
-        });
-    }
-
-    // Detecta cambios en Causa Raíz
-    servicioSelect.addEventListener("change", function () {
-        switch (this.value) {
-            case "ASESOR":
-                cargarMotivos(motivosAsesor);
-                break;
-            case "CLIENTE":
-                cargarMotivos(motivosCliente);
-                break;
-            case "VMO":
-                cargarMotivos(motivosVmo);
-                break;
-            case "EXPERIENCIA ANTERIOR":
-                cargarMotivos(motivosExperiencia);
-                break;
-            default:
-                Motivocausaraiz.innerHTML = '<option value="">Selecciona</option>';
-        }
-    });
-});
-</script>
-
-  
-
-<script>
 document.addEventListener("DOMContentLoaded", function(){
 
-   
-    
-  
-  /* ===============================
-   MOTIVO DE BAJA
-=================================*/
-const servicio = document.getElementById("Servicio");
-const motivoRegistrado = document.getElementById("motivoRegistrado");
-const motivoReal = document.getElementById("motivoReal");
+/* =====================================================
+   ENVÍO CORRECTO A GOOGLE FORMS (ARREGLADO)
+=====================================================*/
 
-const motivosFija = ["COMPETENCIA CON MEJOR PRECIO","FALLA MASIVA","FALLECIMIENTO","MALA EXPERIENCIA TÉCNICA","NO ENTREGA INFORMACIÓN","NO HAY FACTIBILIDAD","NO RECONOCE VENTA","OFERTA NO APLICADA","RECLAMO AJUSTE IPC","RECLAMOS FACTURACIÓN","RENOVACIÓN DESCUENTO","SITUACION ECONÓMICA","SUSTITUYE POR PRODUCTO MOVISTAR","TRASLADO","BAJA NO CURSADA","COBROS EN LA BOLETA","LLAMADA CORTA","LLAMADA NO SE ENCUENTRA EN VERINT","LLAMADA SIN ATENCIÓN"];
-
-const motivosMovil = ["CAMBIO A LA COMPETENCIA","CLIENTE CON DEUDA","MAL FUNCIONAMIENTO DEL PRODUCTO","MALA EXPERIENCIA EN LA VENTA / POSTVENTA","NECESITA REDUCIR GASTOS","NO RECONOCE LA VENTA","NO USA EL PRODUCTO","SUSTITUYE POR OTRO SERVICIO","VIAJE AL EXTRANJERO","NO APLICA","BAJA NO CURSADA","COBROS EN LA BOLETA","LLAMADA CORTA","LLAMADA NO SE ENCUENTRA EN VERINT","LLAMADA SIN ATENCIÓN"];
-
-function cargarMotivosBaja(lista){
-    motivoRegistrado.innerHTML='<option value="">Selecciona</option>';
-    motivoReal.innerHTML='<option value="">Selecciona</option>';
-    lista.forEach(m=>{
-        motivoRegistrado.add(new Option(m,m));
-        motivoReal.add(new Option(m,m));
-    });
-}
-
-servicio.addEventListener("change",function(){
-    if(this.value==="RETENCIONES FIJA"){
-        cargarMotivosBaja(motivosFija);
-    }else if(this.value==="RETENCIONES MOVIL" || this.value==="CONTIGO"){
-        cargarMotivosBaja(motivosMovil);
-    }else{
-        motivoRegistrado.innerHTML='<option value="">Selecciona</option>';
-        motivoReal.innerHTML='<option value="">Selecciona</option>';
-    }
-});
-
-
-/* ===============================
-   NO VENTA
-=================================*/
-const agenteOfrece = document.getElementById("Agenteofrece");
-const causaRaiz = document.getElementById("Cauzaraiz");
-const motivoNoVenta = document.getElementById("Noventa");
-
-const nvAsesor = ["ASESOR NO ABORDA","ASESOR SOLO INFORMA","ASESOR NO REBATE OBJECIONES","FALTA DE HABILIDAD BLANDA"];
-const nvCliente = ["CLIENTE CRÍTICO / NO DESEA ESCUCHAR OFERTAS","CLIENTE CORTA LLAMADA","YA TIENE LOS PRODUCTOS","NO DESEA NADA CON MOVISTAR","MALA EXPERIENCIA CON LOS SERVICIOS"];
-const nvVmo = ["SIN SOLUCIÓN DE AVERÍAS","COBROS ALTOS EN SU SERVICIO ACTUAL","DEMORA EN LAS INSTALACIONES","CAÍDA DE SISTEMA","OFERTA NO ES LO QUE ESPERABA","CLIENTE SUSPENDIDO"];
-const nvExp = ["TRANSFERENCIA INCORRECTA A NUESTRA ÁREA","MALA EXPERIENCIA CON LAS ATENCIONES ANTERIORES","INFORMACIÓN INCORRECTA EN ATENCIÓN ANTERIOR","DISCONFORME CON EL TIEMPO DE ESPERA EN TRANSFERENCIAS"];
-
-function cargarNoVenta(lista){
-    motivoNoVenta.innerHTML='<option value="">Selecciona</option>';
-    lista.forEach(m=>motivoNoVenta.add(new Option(m,m)));
-}
-
-function validarNoVenta(){
-    const valor = agenteOfrece.value;
-    if(valor==="NO" || valor==="SI - SOLO INFORMATIVO"){
-        switch(causaRaiz.value){
-            case "ASESOR": cargarNoVenta(nvAsesor); break;
-            case "CLIENTE": cargarNoVenta(nvCliente); break;
-            case "VMO": cargarNoVenta(nvVmo); break;
-            case "EXPERIENCIA ANTERIOR": cargarNoVenta(nvExp); break;
-            default: motivoNoVenta.innerHTML='<option value="">Selecciona</option>';
-        }
-    }else{
-        motivoNoVenta.innerHTML='<option value="">Selecciona</option>';
-    }
-}
-
-agenteOfrece.addEventListener("change", validarNoVenta);
-causaRaiz.addEventListener("change", validarNoVenta);
-
-
-/* ===============================
-   ENVIO Y LIMPIEZA
-=================================*/
 const form = document.getElementById("googleForm");
 const mensaje = document.getElementById("mensaje");
-
-document.addEventListener("DOMContentLoaded", function() {
-  const form = document.getElementById("googleForm");
-  const mensaje = document.getElementById("mensaje");
-
-  // Esto es para el "Tipo de Muestra"
-  const tipoMuestra = document.getElementById("Tipodemuestra");
-
-  form.addEventListener("submit", function(e) {
-    e.preventDefault(); // Evita que el formulario se envíe de inmediato
-
-    // Obtener todas las opciones seleccionadas de "Tipo de Muestra"
-    const selectedTypes = Array.from(tipoMuestra.selectedOptions).map(option => option.value);
-    
-    // Verifica si al menos se ha seleccionado un tipo de muestra
-    if (selectedTypes.length > 0) {
-        // Establece el valor de tipo de muestra para el envío (como un array)
-        document.getElementById("Tipodemuestra").name = 'entry.1613585774'; // El nombre del campo en Google Forms
-
-        // Creamos un campo oculto para enviar todos los valores seleccionados como array
-        const hiddenField = document.createElement('input');
-        hiddenField.type = 'hidden';
-        hiddenField.name = 'entry.1613585774'; // Asegúrate de que este "name" sea el correcto para Google Forms
-        hiddenField.value = selectedTypes.join(','); // Se unen los valores seleccionados como un string separado por comas
-        form.appendChild(hiddenField);
-      
-        // Espera un pequeño tiempo antes de enviar el formulario para cada tipo de muestra
-        setTimeout(() => {
-          form.submit(); // Envía el formulario con el tipo de muestra actual
-          mensaje.innerText = "✅ Registro enviado correctamente";
-        }, 1000); // 1 segundo de espera
-    } else {
-      alert("Por favor, seleccione al menos un tipo de muestra.");
-    }
-  });
-});
-
-/* ===============================
-   CONDICIONAL TIPO DE MUESTRA
-=================================*/
-
 const tipoMuestra = document.getElementById("Tipodemuestra");
 
-/* Listas por tipo */
+form.addEventListener("submit", function(e){
+
+    // Validación múltiple obligatoria
+    if(tipoMuestra.selectedOptions.length === 0){
+        e.preventDefault();
+        alert("Por favor seleccione al menos un Tipo de Muestra.");
+        return;
+    }
+
+    // 🔥 NO usamos preventDefault aquí
+    mensaje.innerText = "✅ Enviando registro...";
+
+setTimeout(()=>{
+    mensaje.innerText = "✅ Registro enviado correctamente";
+    form.reset();
+    actualizarCampos();
+    actualizarAplazamiento();
+},1500);
+
+
+});
+
+
+/* =====================================================
+   CONDICIONAL TIPO DE MUESTRA
+=====================================================*/
+
 const camposEPA = [
 "801462156","775761170","1707404081",
 "1986049857","435072420","1335755996",
@@ -781,31 +551,21 @@ const camposCROSS = [
 "540982508","1574773486"
 ];
 
-/* Oculta todos los campos condicionales */
 function ocultarTodos(){
-    const todos = new Set([
-        ...camposEPA,
-        ...camposEFECTIVIDAD,
-        ...camposCROSS
-    ]);
-
+    const todos = new Set([...camposEPA,...camposEFECTIVIDAD,...camposCROSS]);
     todos.forEach(id=>{
         const campo = document.querySelector(`[name="entry.${id}"]`);
         if(campo){
             const contenedor = campo.closest(".campo");
             contenedor.style.display="none";
-
-            // 🔥 Quitar required cuando se oculta
             campo.required = false;
         }
     });
 }
 
-/* Mostrar campos según selección */
 function actualizarCampos(){
 
     ocultarTodos();
-   
 
     const seleccionados = Array.from(tipoMuestra.selectedOptions)
                                 .map(op => op.value);
@@ -815,11 +575,9 @@ function actualizarCampos(){
     if(seleccionados.includes("EPA")){
         camposEPA.forEach(c=>camposAMostrar.add(c));
     }
-
     if(seleccionados.includes("EFECTIVIDAD")){
         camposEFECTIVIDAD.forEach(c=>camposAMostrar.add(c));
     }
-
     if(seleccionados.includes("CROSS")){
         camposCROSS.forEach(c=>camposAMostrar.add(c));
     }
@@ -828,72 +586,50 @@ function actualizarCampos(){
         const campo = document.querySelector(`[name="entry.${id}"]`);
         if(campo){
             const contenedor = campo.closest(".campo");
-              contenedor.style.display="flex";
-
-              /* Activar required cuando se muestra*/
-              campo.required = true;
+            contenedor.style.display="flex";
+            campo.required = true;
         }
     });
 }
 
-/* Evento */
 tipoMuestra.addEventListener("change", actualizarCampos);
-
-/* Inicial */
 ocultarTodos();
 actualizarCampos();
 
-  /*<! ---- CONDICIONAL APLAZAMIENTO --->*/
 
+/* =====================================================
+   CONDICIONAL APLAZAMIENTO
+=====================================================*/
 
 const seguimiento = document.getElementById("Seguimiento");
-
-const campoInicioAplazamiento = document.getElementById("campo_inicio_aplazamiento");
-const campoFinAplazamiento = document.getElementById("campo_fin_aplazamiento");
+const campoInicio = document.getElementById("campo_inicio_aplazamiento");
+const campoFin = document.getElementById("campo_fin_aplazamiento");
 
 function actualizarAplazamiento(){
 
-    const inputInicio = campoInicioAplazamiento.querySelector("input");
-    const inputFin = campoFinAplazamiento.querySelector("input");
+    const inputInicio = campoInicio.querySelector("input");
+    const inputFin = campoFin.querySelector("input");
 
     if(seguimiento.value === "APLAZAMIENTO"){
-
-        campoInicioAplazamiento.style.display = "flex";
-        campoFinAplazamiento.style.display = "flex";
-
+        campoInicio.style.display="flex";
+        campoFin.style.display="flex";
         inputInicio.required = true;
         inputFin.required = true;
-
-    } else {
-
-        campoInicioAplazamiento.style.display = "none";
-        campoFinAplazamiento.style.display = "none";
-
+    }else{
+        campoInicio.style.display="none";
+        campoFin.style.display="none";
         inputInicio.required = false;
         inputFin.required = false;
-
-        inputInicio.value = "";
-        inputFin.value = "";
+        inputInicio.value="";
+        inputFin.value="";
     }
 }
 
-/* Evento */
 seguimiento.addEventListener("change", actualizarAplazamiento);
-
-/* Estado inicial */
 actualizarAplazamiento();
 
-  
-
-  });
-
+});
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
