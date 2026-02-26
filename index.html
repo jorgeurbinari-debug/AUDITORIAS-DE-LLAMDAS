@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <title>Formulario Google</title>
 <style>
+{
+  box-sizing: border-box;
+}
+  
 /* ==== TODO TU CSS ORIGINAL SE MANTIENE IGUAL ==== */
 body{
   font-family: Arial, Helvetica, sans-serif;
@@ -25,16 +29,20 @@ form{
 
 .grid{
   display:grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap:20px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap:24px 28px;
+  align-items:start;
 }
 
-.campo{ display:flex; flex-direction:column; }
+.campo{ 
+  display:flex; 
+  flex-direction:column; 
+  gap:6px; 
+}
 
 .campo label{
   font-size:13px;
   font-weight:600;
-  margin-bottom:6px;
   color:#333;
 }
 
@@ -48,6 +56,22 @@ form{
   width:100%;
 }
 
+.campo input,
+.campo select{
+  height:42px;
+}
+
+select[multiple]{
+  min-height:120px;
+}
+
+textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
+
+  
 input:focus, select:focus, textarea:focus{
   border-color:#0066ff;
   box-shadow:0 0 6px rgba(0,102,255,0.5);
@@ -55,8 +79,8 @@ input:focus, select:focus, textarea:focus{
 }
 
 button{
-  margin-top:25px;
-  padding:12px;
+  margin-top:30px;
+  padding:14px;
   width:100%;
   border:none;
   border-radius:6px;
@@ -65,10 +89,12 @@ button{
   font-size:16px;
   font-weight:700;
   cursor:pointer;
+  transition:0.3s ease;
 }
 
 button:hover{
   background: linear-gradient(45deg, #0052cc, #003399);
+  transform:translateY(-2px);
 }
 
 .mensaje{
@@ -891,6 +917,7 @@ form.addEventListener("submit", async function(e){
 
 </body>
 </html>
+
 
 
 
