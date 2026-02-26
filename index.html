@@ -305,7 +305,7 @@ button:hover{
           rows="4"
           ></textarea>
 </div>
-/*  =====  CAMPOS CROSSS=======*/
+
 <div class="campo">
 <label>Hubo Solucion al Req. del cliente</label>
 <select id="Solucionreq" name="entry.1954737468">
@@ -446,7 +446,6 @@ document.addEventListener("DOMContentLoaded", function(){
    MOTIVOS EPA
 =================================*/
 const causaRaiz = document.getElementById("Cauzaraiz");
-const causaRaizcross = document.getElementById("Cauzaraizcross");
 const Motivocausaraiz = document.getElementById("Motivocausaraiz");
 
 const motivosCliente = [
@@ -745,6 +744,7 @@ liderSelect.addEventListener("change", function(){
 /* ===============================
    NO VENTA
 =================================*/
+const causaRaizcross1 = document.getElementById("Cauzaraizcross");
 const agenteOfrece = document.getElementById("Agenteofrece");
 const motivoNoVenta = document.getElementById("Noventa");
 
@@ -759,8 +759,9 @@ function cargarNoVenta(lista){
 }
 
 function validarNoVenta(){
+    if(!agenteOfrece || !causaRaizcross1) return;
     if(agenteOfrece.value==="NO" || agenteOfrece.value==="SI - SOLO INFORMATIVO"){
-        switch(causaRaizcross.value){
+        switch(causaRaizcross1.value){
             case "ASESOR": cargarNoVenta(nvAsesor); break;
             case "CLIENTE": cargarNoVenta(nvCliente); break;
             case "VMO": cargarNoVenta(nvVmo); break;
@@ -773,7 +774,7 @@ function validarNoVenta(){
 }
 
 agenteOfrece.addEventListener("change", validarNoVenta);
-causaRaiz.addEventListener("change", validarNoVenta);
+causaRaizcross1.addEventListener("change", validarNoVenta);
 
 /* ===============================
    CONDICIONAL TIPO DE MUESTRA
@@ -890,6 +891,7 @@ form.addEventListener("submit", async function(e){
 
 </body>
 </html>
+
 
 
 
