@@ -786,7 +786,7 @@ function cargarNoVenta(lista){
 
 function validarNoVenta(){
     if(!agenteOfrece || !causaRaizcross1) return;
-    if(agenteOfrece.value==="NO" || agenteOfrece.value==="SI - SOLO INFORMATIVO"){
+    if(agenteOfrece.value==="NO" || agenteOfrece.value==="SI - SOLO INFORMATIVO"|| agenteOfrece.value==="SI - CON INTENCION"){
         switch(causaRaizcross1.value){
             case "ASESOR": cargarNoVenta(nvAsesor); break;
             case "CLIENTE": cargarNoVenta(nvCliente); break;
@@ -917,6 +917,7 @@ form.addEventListener("submit", async function(e){
 
 </body>
 </html>
+
 
 
 
